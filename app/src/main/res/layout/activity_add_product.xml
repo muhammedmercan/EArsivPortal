@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.NewInvoiceCustomerChoiceActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addProductPageVatRateTextInputLayout"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addProductRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addProductLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addProductPagePriceTextInputLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/addProductPageVatRateAutoCompleteView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="KDV Oranı"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:textCursorDrawable="@null"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addProductPageUnitTextInputLayout"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addProductRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addProductLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addProductPageProductNameTextInputLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/addProductPageUnitAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Birim"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textCursorDrawable="@null"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/addProductPageActionBar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addProductPageProductNameTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addProductRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addProductLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addProductPageActionBar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ürün Adı"
+            android:imeOptions="actionDone"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addProductPagePriceTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addProductRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addProductLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addProductPageUnitTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Birim Fiyat"
+            android:imeOptions="actionDone"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/addProductPageSaveButton"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#196AA5"
+        android:text="Kaydet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addProductRightGuideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/addProductLeftGuideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/addProductRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/addProductLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+

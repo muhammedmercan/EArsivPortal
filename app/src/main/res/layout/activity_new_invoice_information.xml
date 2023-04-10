@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.NewInvoiceInformationActivity">
+
+    <Button
+        android:id="@+id/newInvoiceInformationPageNextButton"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#196AA5"
+        android:text="İleri"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceInformationPageWaybillDateTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageWaybillNumberTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="İrsaliye Tarihi" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceInformationPageWaybillNumberTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageWaybillTittleTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="İrsaliye Numarası" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceInformationPageInvoiceNoteTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageInvoiceTypeTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Fatura Notu" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceInformationPageDocumentCurrencyTextInputLayout"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageDateOfIssueTextInputLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/registerPageAutoCompleteTextViewZodiacSign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Döküman Para Birimi"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceInformationPageInvoiceTypeTextInputLayout"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageDocumentCurrencyTextInputLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/newInvoiceInformationPageInvoiceTypeAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fatura Tipi"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceInformationPageDateOfIssueTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageEditTimeTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageActionBar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Düzenlenme Tarihi" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceInformationPageEditTimeTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/newInvoiceInformationPageDateOfIssueTextInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/newInvoiceInformationPageDateOfIssueTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Düzenlenme Saati" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/newInvoiceInformationPageActionBar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/newInvoiceInformationPageRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/newInvoiceInformationPageLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <TextView
+        android:id="@+id/newInvoiceInformationPageWaybillTittleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="İrsaliye Bilgileri"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceInformationPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceInformationPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageInvoiceNoteTextInputLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.NewInvoiceProductsActivity">
+
+    <Button
+        android:id="@+id/newInvoiceProductsPageSaveButton"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="#196AA5"
+        android:text="Kaydet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceProductsPageRightGuideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceProductsPageLeftGuideline" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/newInvoiceProductsPageCardView"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="25dp"
+        app:cardBackgroundColor="#f0f0f0"
+        app:layout_constraintBottom_toTopOf="@+id/newInvoiceProductsPageSaveButton"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceProductsPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceProductsPageLeftGuideline"
+       >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/newInvoiceProductsPageProductServiceAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Mal Hizmet Tutarı"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/newInvoiceProductsPageProductVatAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="KDV Tutarı TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceProductsPageProductGrandTotalTextView"
+                app:layout_constraintStart_toStartOf="@+id/newInvoiceProductsPageProductServiceAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceProductsPageProductServiceAmountTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceProductsPageProductTotalVatAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="18.00 TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceProductsPageProductTotalGrandTotalTextView"
+                app:layout_constraintEnd_toEndOf="@+id/newInvoiceProductsPageProductTotalServiceAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceProductsPageProductTotalServiceAmountTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceProductsPageProductTotalServiceAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="100.00 TRY"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/newInvoiceProductsPageProductGrandTotalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="20dp"
+                android:text="Genel Toplam TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/newInvoiceProductsPageProductVatAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceProductsPageProductVatAmountTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceProductsPageProductTotalGrandTotalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="20dp"
+                android:text="118.00 TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/newInvoiceProductsPageProductTotalVatAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceProductsPageProductTotalVatAmountTextView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <include
+        android:id="@+id/newInvoiceProductsPageActionBar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/newInvoiceProductsPageRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/newInvoiceProductsPageLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newInvoiceProductsPageRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/newInvoiceProductsPageCardView"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceProductsPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceProductsPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceProductsPageActionBar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

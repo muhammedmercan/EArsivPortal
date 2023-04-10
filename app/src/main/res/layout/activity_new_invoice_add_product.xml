@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.NewInvoiceInformationActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageUnitTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/newInvoiceAddProductPageQuantityTextInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/newInvoiceAddProductPageQuantityTextInputLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/newInvoiceAddProductPageUnitAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Birim"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageCustomTaxRateTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="10dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageTaxAmountTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageAddTaxTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Özel Vergi Oranı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageDiscountRateTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="10dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageDiscountAmountTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageVatRateTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="İskonto Oranı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageDiscountAmountTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/newInvoiceAddProductPageDiscountRateTextInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/newInvoiceAddProductPageDiscountRateTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="İskonto Tutarı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageVatAmountTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/newInvoiceAddProductPageVatRateTextInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/newInvoiceAddProductPageVatRateTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="KDV Tutarı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageVatRateTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="10dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageVatAmountTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageUnitPriceTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="KDV Oranı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/newInvoiceAddProductNextButton"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#196AA5"
+        android:text="İleri"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageProductNameTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageActionBar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mal Hizmet Adı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageUnitPriceTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageQuantityTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Birim Fiyatı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageAddTaxTextInputLayout"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageDiscountRateTextInputLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/newInvoiceAddProductPageAddTaxAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vergi Ekle"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageQuantityTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageUnitTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductNameTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Miktar" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/newInvoiceAddProductPageActionBar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/newInvoiceAddProductPageRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/newInvoiceAddProductPageLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newInvoiceAddProductPageTaxAmountTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/newInvoiceAddProductPageCustomTaxRateTextInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/newInvoiceAddProductPageCustomTaxRateTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vergi Tutarı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/newInvoiceAddProductPageCardView"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="#f0f0f0"
+        app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageCustomTaxRateTextInputLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductServiceAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Mal Hizmet Tutarı"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductVatAmountTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductVatAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="KDV Tutarı TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductGrandTotalTextView"
+                app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageProductServiceAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductServiceAmountTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="18.00 TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductTotalGrandTotalTextView"
+                app:layout_constraintEnd_toEndOf="@+id/newInvoiceAddProductPageProductTotalServiceAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductTotalServiceAmountTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductTotalServiceAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="100.00 TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductGrandTotalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="20dp"
+                android:text="Genel Toplam TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageProductVatAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductVatAmountTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductTotalGrandTotalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="20dp"
+                android:text="118.00 TRY"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

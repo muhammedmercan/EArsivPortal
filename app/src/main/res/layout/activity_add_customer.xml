@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/addCustomerPageActionBar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addCustomerPageTcTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeColor="#196AA5"
+        app:boxStrokeWidth="0dp"
+        app:hintTextColor="#196AA5"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addCustomerPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addCustomerPageActionBar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="VKN/TCKN"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addCustomerPageTitleTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addCustomerPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addCustomerPageSearchButton">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unvan" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addCustomerPageNameTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="10dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageSurnameTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/addCustomerPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addCustomerPageTitleTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Adı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addCustomerPageSurnameTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageRightGuideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addCustomerPageNameTextInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/addCustomerPageNameTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Soyadı" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addCustomerPageTaxDepartmentInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addCustomerPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addCustomerPageNameTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vergi Dairesi" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addCustomerPageAdressInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:boxBackgroundColor="#f0f0f0"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addCustomerPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addCustomerPageTaxDepartmentInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Adres" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/addCustomerPageSearchButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#196AA5"
+        android:text="Ara"
+        app:cornerRadius="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageRightGuideline"
+        app:layout_constraintStart_toStartOf="@+id/addCustomerPageLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/addCustomerPageTcTextInputLayout" />
+
+    <Button
+        android:id="@+id/addCustomerPageSaveButton"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#196AA5"
+        android:text="Kaydet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addCustomerPageRightGuideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/addCustomerPageLeftGuideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/addCustomerPageRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/addCustomerPageLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

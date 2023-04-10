@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.NewInvoiceProductsActivity">
+
+    <Button
+        android:id="@+id/customersPageAddCustomerButton"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#196AA5"
+        android:text="Müşteri Ekle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/customersPageLeftGuideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/customersPageRightGuideline" />
+
+
+    <include
+        android:id="@+id/customersPageIncludeActionBar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/customersPageLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/customersPageRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/customersPageRecyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/customersPageAddCustomerButton"
+        app:layout_constraintEnd_toStartOf="@+id/customersPageLeftGuideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/customersPageRightGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/customersPageIncludeActionBar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

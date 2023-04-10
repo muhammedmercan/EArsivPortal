@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">E-ArsivPortal</string>
+
+    <string name="home_create_new_invoice">Yeni Fatura Oluştur</string>
+    <string name="home_outgoing_invoices">Giden Faturalar</string>
+    <string name="home_incoming_invoices">Gelen Faturalar</string>
+    <string name="home_products">Ürünler</string>
+    <string name="home_customers">Müşteriler</string>
+    <string name="home_cancellation_appeal_requests">İptal/İtiraz Talepleri</string>
+
+</resources>
