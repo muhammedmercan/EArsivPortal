@@ -1,19 +1,14 @@
 package com.example.biochakraastralterapi.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.e_arsivportal.databinding.CustomerItemBinding
 import com.example.e_arsivportal.databinding.IncomingInvoiceItemBinding
-import com.example.e_arsivportal.models.CustomerModel
-import com.example.e_arsivportal.models.InvoiceModel
+import com.example.e_arsivportal.models.IncomingInvoiceModel
 
-import com.example.e_arsivportal.views.AddCustomerActivity
-
-class IssuedToMeAdapter(private val invoiceList: List<InvoiceModel>, private val context: Context) :
-    RecyclerView.Adapter<IssuedToMeAdapter.ViewHolder>() {
+class IncomingInvoicesAdapter(private val invoiceList: List<IncomingInvoiceModel>, private val context: Context) :
+    RecyclerView.Adapter<IncomingInvoicesAdapter.ViewHolder>() {
 
     interface CustomViewHolderListener{
         fun onCustomItemClicked(id : Int)
@@ -32,6 +27,7 @@ class IssuedToMeAdapter(private val invoiceList: List<InvoiceModel>, private val
 
         holder.binding.incomingInvoiceItemCompanyName.text = invoiceList[position].saticiUnvanAdSoyad
         holder.binding.incomingInvoiceItemDocumentNumber.text = invoiceList[position].belgeNumarasi
+        holder.binding.incomingInvoiceItemDate.text = invoiceList[position].belgeTarihi
 
 
         /*

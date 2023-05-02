@@ -1,11 +1,11 @@
 package com.example.e_arsivportal.models
 
-data class InvoiceModel(
+data class OutgoingInvoiceModel(
     val belgeNumarasi: String,
     val belgeTarihi: String,
     val belgeTuru: String,
     val ettn: String,
     val onayDurumu: String,
-    val saticiUnvanAdSoyad: String,
-    val saticiVknTckn: String
+    val aliciUnvanAdSoyad: String,
+    val aliciVknTckn: String
 )

@@ -4,16 +4,20 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.biochakraastralterapi.adapters.IssuedToMeAdapter
+import com.example.biochakraastralterapi.adapters.IncomingInvoicesAdapter
 import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityIncomingInvoicesBinding
-import com.example.e_arsivportal.viewmodels.IssuedToMeViewModel
-import java.util.Calendar
+import com.example.e_arsivportal.models.IncomingInvoiceModel
+import com.example.e_arsivportal.viewmodels.IncomingInvoicesViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class IncomingInvoicesActivity : AppCompatActivity() {
@@ -21,8 +25,11 @@ class IncomingInvoicesActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityIncomingInvoicesBinding
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: IssuedToMeViewModel
+    private lateinit var viewModel: IncomingInvoicesViewModel
     private lateinit var context: Context
+
+    lateinit var invoiceList:List<IncomingInvoiceModel>
+
 
 /*
     val deleteButtonListener = object: CustomersAdapter.CustomViewHolderListener {
@@ -37,7 +44,6 @@ class IncomingInvoicesActivity : AppCompatActivity() {
  */
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityIncomingInvoicesBinding.inflate(layoutInflater)
@@ -45,37 +51,79 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
         context = this
 
-        viewModel = ViewModelProvider(this).get(IssuedToMeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(IncomingInvoicesViewModel::class.java)
 
 
-        viewModel.getAllIssuedToMe(this)
 
         observeLiveData()
-
-
 
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        binding.issuedToMePageStartDateTextInputLayout?.editText?.setOnClickListener() {
+        val currentDate = c.time
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val currentDateString = formatter.format(currentDate)
+
+        c.add(Calendar.DAY_OF_MONTH, -7)
+
+        val lastWeekDate = c.time
+        val lastWeekDateString = formatter.format(lastWeekDate)
+
+
+        binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(lastWeekDateString)
+
+        binding.incomingInvoicesPageEndDateTextInputLayout.editText?.setText(currentDateString)
+
+        viewModel.getIncomingInvoices(this,binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+            binding.incomingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
+
+        binding.incomingInvoicesPageStartDateTextInputLayout?.editText?.setOnClickListener() {
 
 
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year , month , day ->
 
-                binding.issuedToMePageStartDateTextInputLayout.editText?.setText("$day/$month/$year")
+                val startDate = java.lang.String.format("%02d/%02d/%d", day, month + 1 , year)
+
+
+                binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(startDate)
             }, year,month,day).show()
 
         }
 
-        binding.issuedToMePageEndDateTextInputLayout?.editText?.setOnClickListener() {
+        binding.incomingInvoicesPageEndDateTextInputLayout?.editText?.setOnClickListener() {
 
 
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year , month , day ->
 
-                binding.issuedToMePageEndDateTextInputLayout.editText?.setText("$day/$month/$year")
+                val endDate = java.lang.String.format("%02d/%02d/%d", day, month + 1 , year)
+
+
+                binding.incomingInvoicesPageEndDateTextInputLayout.editText?.setText(endDate)
             }, year,month,day).show()
+
+        }
+
+
+        binding.incomingInvoicesPageSearchTextInputLayout.editText?.doAfterTextChanged {
+
+            filter(binding.incomingInvoicesPageSearchTextInputLayout.editText!!.text.toString())
+
+        }
+
+        binding.incomingInvoicesPageStartDateTextInputLayout.editText?.doAfterTextChanged {
+
+            viewModel.getIncomingInvoices(this,binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+                binding.incomingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
+
+        }
+
+
+        binding.incomingInvoicesPageEndDateTextInputLayout.editText?.doAfterTextChanged {
+
+            viewModel.getIncomingInvoices(this,binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+                binding.incomingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
 
         }
 
@@ -91,17 +139,117 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
     }
 
+
+    fun click(view: View) {
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+
+
+
+
+        when (view.getId()) {
+            R.id.incomingInvoicesPageTodayButton -> {
+
+                val date = c.time
+                val dateString = formatter.format(date)
+                binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(dateString)
+
+            }
+            R.id.incomingInvoicesPageLastSevenDaysButton-> {
+
+                c.add(Calendar.DAY_OF_MONTH, -7)
+                val date = c.time
+                val dateString = formatter.format(date)
+                binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(dateString)
+
+            }
+            R.id.incomingInvoicesPageLastFourteenDaysButton -> {
+
+                c.add(Calendar.DAY_OF_MONTH, -14)
+                val date = c.time
+                val dateString = formatter.format(date)
+                binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(dateString)
+
+            }
+            R.id.incomingInvoicesPageLastThirtyDaysButton -> {
+
+                c.add(Calendar.DAY_OF_MONTH, -30)
+                val date = c.time
+                val dateString = formatter.format(date)
+                binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(dateString)
+
+            }
+            R.id.incomingInvoicesPageLastSixMonthsButton -> {
+
+                c.add(Calendar.MONTH, -6)
+                val date = c.time
+                val dateString = formatter.format(date)
+                binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(dateString)
+
+            }
+            R.id.incomingInvoicesPageLastThisYearButton -> {
+
+                c.set(Calendar.DAY_OF_MONTH,1)
+                c.set(Calendar.MONTH,0)
+                val date = c.time
+                val dateString = formatter.format(date)
+                binding.incomingInvoicesPageStartDateTextInputLayout.editText?.setText(dateString)
+
+            }
+        }
+    }
+
+    private fun filter(text: String) {
+        // creating a new array list to filter our data.
+        val filteredlist: ArrayList<IncomingInvoiceModel> = ArrayList<IncomingInvoiceModel>()
+
+        // running a for loop to compare elements.
+        for (item in invoiceList) {
+            // checking if the entered string matched with any item of our recycler view.
+            if (item.saticiUnvanAdSoyad.lowercase().contains(text.lowercase(Locale.getDefault()))) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item)
+            }
+
+            if (item.belgeNumarasi.lowercase().contains(text.lowercase(Locale.getDefault()))) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item)
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            //Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show()
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            _binding?.incomingInvoicesPageRecyclerView?.adapter =
+
+                context?.let { IncomingInvoicesAdapter(filteredlist, it) }
+        }
+    }
+
     fun observeLiveData() {
 
-        viewModel.liveData.observe(this, Observer { invoiceList ->
+        viewModel.liveData.observe(this, Observer { list ->
+
+            invoiceList = list
 
             invoiceList.let {
 
-                _binding?.issuedToMePageRecyclerView?.adapter =
-                    this?.let { IssuedToMeAdapter(invoiceList, it) }
-                    //this?.let { IssuedToMeAdapter(invoiceList, it, deleteButtonListener) }
+                _binding?.incomingInvoicesPageRecyclerView?.adapter =
+                    this?.let { IncomingInvoicesAdapter(list, it) }
+                    //this?.let { IncomingInvoices(invoiceList, it, deleteButtonListener) }
 
-                _binding?.issuedToMePageRecyclerView?.layoutManager = LinearLayoutManager(this)
+                _binding?.incomingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
 
             }
         }

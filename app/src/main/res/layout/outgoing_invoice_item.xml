@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    app:cardBackgroundColor="#f0f0f0">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/outgoingInvoiceItemResizableConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/outgoingInvoiceItemDate">
+
+            <ImageView
+                android:id="@+id/outgoingInvoiceItemShareImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoiceItemRepeatImageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoiceItemPreviewImageView"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoiceItemPreviewImageView"
+                app:srcCompat="@drawable/share" />
+
+            <ImageView
+                android:id="@+id/outgoingInvoiceItemRepeatImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoiceItemShareImageView"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoiceItemShareImageView"
+                app:srcCompat="@drawable/rotating_arrow_to_the_left" />
+
+            <ImageView
+                android:id="@+id/outgoingInvoiceItemPreviewImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoiceItemShareImageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoiceItemCancelImageView"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoiceItemCancelImageView"
+                app:srcCompat="@drawable/preview" />
+
+            <ImageView
+                android:id="@+id/outgoingInvoiceItemCancelImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoiceItemPreviewImageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/cancel2" />
+
+            <TextView
+                android:id="@+id/outgoingInvoiceItemCancelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="İptal"
+                app:layout_constraintEnd_toEndOf="@+id/outgoingInvoiceItemCancelImageView"
+                app:layout_constraintStart_toStartOf="@+id/outgoingInvoiceItemCancelImageView"
+                app:layout_constraintTop_toBottomOf="@+id/outgoingInvoiceItemCancelImageView" />
+
+            <TextView
+                android:id="@+id/outgoingInvoiceItemPreviewTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Önizleme"
+                app:layout_constraintEnd_toEndOf="@+id/outgoingInvoiceItemPreviewImageView"
+                app:layout_constraintStart_toStartOf="@+id/outgoingInvoiceItemPreviewImageView"
+                app:layout_constraintTop_toBottomOf="@+id/outgoingInvoiceItemPreviewImageView" />
+
+            <TextView
+                android:id="@+id/outgoingInvoiceItemShareTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Paylaş"
+                app:layout_constraintEnd_toEndOf="@+id/outgoingInvoiceItemShareImageView"
+                app:layout_constraintStart_toStartOf="@+id/outgoingInvoiceItemShareImageView"
+                app:layout_constraintTop_toBottomOf="@+id/outgoingInvoiceItemShareImageView" />
+
+            <TextView
+                android:id="@+id/outgoingInvoiceItemRepeatTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Tekrarla"
+                app:layout_constraintEnd_toEndOf="@+id/outgoingInvoiceItemRepeatImageView"
+                app:layout_constraintStart_toStartOf="@+id/outgoingInvoiceItemRepeatImageView"
+                app:layout_constraintTop_toBottomOf="@+id/outgoingInvoiceItemRepeatImageView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/outgoingInvoiceItemCompanyName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="MİLCAR TURİZM OTOMOTİV GIDA İNŞAAT SANAYİ VE TİCARET ANONİM ŞİRKETİ"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/outgoingInvoiceItemDocumentNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="GIB2022000000066"
+            app:layout_constraintStart_toStartOf="@+id/outgoingInvoiceItemCompanyName"
+            app:layout_constraintTop_toBottomOf="@+id/outgoingInvoiceItemCompanyName" />
+
+        <TextView
+            android:id="@+id/outgoingInvoiceItemDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="13-12-2022"
+            app:layout_constraintStart_toStartOf="@+id/outgoingInvoiceItemDocumentNumber"
+            app:layout_constraintTop_toBottomOf="@+id/outgoingInvoiceItemDocumentNumber" />
+
+        <ImageView
+            android:id="@+id/outgoingInvoiceItemArrowImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:onClick="click"
+            app:layout_constraintBottom_toBottomOf="@+id/outgoingInvoiceItemDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/outgoingInvoiceItemCompanyName"
+            app:srcCompat="@drawable/downward_arrow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

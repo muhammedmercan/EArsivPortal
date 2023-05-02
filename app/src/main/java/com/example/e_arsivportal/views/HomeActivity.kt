@@ -36,6 +36,11 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.homePageOutgoingInvoiceCardView.setOnClickListener() {
+            val intent = Intent(this, OutgoingInvoicesActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.homePageIncomingCardView.setOnClickListener() {
             val intent = Intent(this, IncomingInvoicesActivity::class.java)
             startActivity(intent)

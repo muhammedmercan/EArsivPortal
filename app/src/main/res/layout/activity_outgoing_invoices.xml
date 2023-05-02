@@ -12,7 +12,7 @@
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/incomingInvoicesPageSearchTextInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/outgoingInvoicesPageSearchTextInputLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:focusableInTouchMode="false">
 
             <Button
-                android:id="@+id/incomingInvoicesPageTodayButton"
+                android:id="@+id/outgoingInvoicesPageTodayButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -29,26 +29,26 @@
                 android:onClick="click"
                 android:text="Bugün"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/incomingInvoicesPageLastSevenDaysButton"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoicesPageLastSevenDaysButton"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/incomingInvoicesPageLastSevenDaysButton"
+                android:id="@+id/outgoingInvoicesPageLastSevenDaysButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:text="Son 7 Gün"
                 android:onClick="click"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/incomingInvoicesPageLastFourteenDaysButton"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoicesPageLastFourteenDaysButton"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/incomingInvoicesPageTodayButton"
-                app:layout_constraintTop_toTopOf="@+id/incomingInvoicesPageTodayButton" />
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoicesPageTodayButton"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoicesPageTodayButton" />
 
             <Button
-                android:id="@+id/incomingInvoicesPageLastFourteenDaysButton"
+                android:id="@+id/outgoingInvoicesPageLastFourteenDaysButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -56,11 +56,11 @@
                 android:onClick="click"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/incomingInvoicesPageLastSevenDaysButton"
-                app:layout_constraintTop_toTopOf="@+id/incomingInvoicesPageLastSevenDaysButton" />
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoicesPageLastSevenDaysButton"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoicesPageLastSevenDaysButton" />
 
             <Button
-                android:id="@+id/incomingInvoicesPageLastThirtyDaysButton"
+                android:id="@+id/outgoingInvoicesPageLastThirtyDaysButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -68,26 +68,26 @@
                 android:text="Son 30 Gün"
                 android:onClick="click"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/incomingInvoicesPageLastSixMonthsButton"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoicesPageLastSixMonthsButton"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/incomingInvoicesPageTodayButton" />
+                app:layout_constraintTop_toBottomOf="@+id/outgoingInvoicesPageTodayButton" />
 
             <Button
-                android:id="@+id/incomingInvoicesPageLastSixMonthsButton"
+                android:id="@+id/outgoingInvoicesPageLastSixMonthsButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Son 6 Ay"
                 android:onClick="click"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/incomingInvoicesPageLastThisYearButton"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoicesPageLastThisYearButton"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/incomingInvoicesPageLastThirtyDaysButton"
-                app:layout_constraintTop_toTopOf="@+id/incomingInvoicesPageLastThirtyDaysButton" />
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoicesPageLastThirtyDaysButton"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoicesPageLastThirtyDaysButton" />
 
             <Button
-                android:id="@+id/incomingInvoicesPageLastThisYearButton"
+                android:id="@+id/outgoingInvoicesPageLastThisYearButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -97,11 +97,11 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/incomingInvoicesPageLastSixMonthsButton"
-                app:layout_constraintTop_toTopOf="@+id/incomingInvoicesPageLastSixMonthsButton" />
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoicesPageLastSixMonthsButton"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoicesPageLastSixMonthsButton" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/incomingInvoicesPageEndDateTextInputLayout"
+                android:id="@+id/outgoingInvoicesPageEndDateTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,8 +111,8 @@
                 app:boxStrokeWidth="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/incomingInvoicesPageStartDateTextInputLayout"
-                app:layout_constraintTop_toTopOf="@+id/incomingInvoicesPageStartDateTextInputLayout">
+                app:layout_constraintStart_toEndOf="@+id/outgoingInvoicesPageStartDateTextInputLayout"
+                app:layout_constraintTop_toTopOf="@+id/outgoingInvoicesPageStartDateTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -123,7 +123,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/incomingInvoicesPageStartDateTextInputLayout"
+                android:id="@+id/outgoingInvoicesPageStartDateTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -132,10 +132,10 @@
                 android:layout_marginEnd="10dp"
                 app:boxBackgroundColor="#f0f0f0"
                 app:boxStrokeWidth="0dp"
-                app:layout_constraintEnd_toStartOf="@+id/incomingInvoicesPageEndDateTextInputLayout"
+                app:layout_constraintEnd_toStartOf="@+id/outgoingInvoicesPageEndDateTextInputLayout"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/incomingInvoicesPageLastThirtyDaysButton">
+                app:layout_constraintTop_toBottomOf="@+id/outgoingInvoicesPageLastThirtyDaysButton">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -158,7 +158,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/incomingInvoicesPageSearchTextInputLayout"
+        android:id="@+id/outgoingInvoicesPageSearchTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/incomingInvoicesPageRecyclerView"
+        android:id="@+id/outgoingInvoicesPageRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"

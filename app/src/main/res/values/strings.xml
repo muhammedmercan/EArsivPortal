@@ -7,5 +7,7 @@
     <string name="home_products">Ürünler</string>
     <string name="home_customers">Müşteriler</string>
     <string name="home_cancellation_appeal_requests">İptal/İtiraz Talepleri</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
