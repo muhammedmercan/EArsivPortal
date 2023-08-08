@@ -4,13 +4,18 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.e_arsivportal.models.CustomerModel
+import com.example.e_arsivportal.repo.RepositoryInterface
 import com.example.e_arsivportal.service.Database
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-
-class CustomersViewModel: ViewModel() {
+import javax.inject.Inject
+@HiltViewModel
+class CustomersViewModel @Inject constructor(
+    private val repository: RepositoryInterface
+) : ViewModel() {
 
     private var job : Job? = null
     val liveData = MutableLiveData<MutableList<CustomerModel>>()

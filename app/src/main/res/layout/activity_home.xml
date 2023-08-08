@@ -7,19 +7,16 @@
     tools:context=".views.HomeActivity">
 
 
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/homePageCreateNewInvoiceCardView"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="15dp"
         app:cardBackgroundColor="@color/home_card_background"
         app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/homePageOutgoingInvoiceCardView"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -34,13 +31,13 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
+                android:src="@drawable/create_new_invoice"
                 app:layout_constraintBottom_toTopOf="@+id/homePageCreateNewInvoiceText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:src="@drawable/create_new_invoice"/>
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/homePageCreateNewInvoiceText"
@@ -81,13 +78,13 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
+                android:src="@drawable/customers"
                 app:layout_constraintBottom_toTopOf="@+id/homePageCustomersText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:src="@drawable/customers" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/homePageCustomersText"
@@ -110,14 +107,14 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         app:cardBackgroundColor="@color/home_card_background"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toStartOf="@+id/homePageCustomersCardView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homePageCancellationAppealRequestsCardView">
+        app:layout_constraintTop_toBottomOf="@+id/homePageIncomingCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -130,13 +127,13 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
+                android:src="@drawable/products"
                 app:layout_constraintBottom_toTopOf="@+id/homePageProductsText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:src="@drawable/products" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/homePageProductsText"
@@ -158,13 +155,15 @@
         android:id="@+id/homePageIncomingCardView"
         android:layout_width="0dp"
         android:layout_height="200dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         app:cardBackgroundColor="@color/home_card_background"
         app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/homePageOutgoingInvoiceCardView"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/homePageCancellationAppealRequestsCardView"
-        app:layout_constraintTop_toTopOf="@+id/homePageCancellationAppealRequestsCardView">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homePageCreateNewInvoiceCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -177,13 +176,13 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
+                android:src="@drawable/incoming_invoices"
                 app:layout_constraintBottom_toTopOf="@+id/homePageIncomingText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:src="@drawable/incoming_invoices" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/homePageIncomingText"
@@ -208,10 +207,11 @@
         android:layout_marginEnd="15dp"
         app:cardBackgroundColor="@color/home_card_background"
         app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homePageIncomingCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/homePageCreateNewInvoiceCardView"
-        app:layout_constraintTop_toTopOf="@+id/homePageCreateNewInvoiceCardView">
+        app:layout_constraintStart_toEndOf="@+id/homePageIncomingCardView"
+        app:layout_constraintTop_toTopOf="@+id/homePageIncomingCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -224,13 +224,13 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
+                android:src="@drawable/outgoing_invoices"
                 app:layout_constraintBottom_toTopOf="@+id/homePageOutgoingInvoiceText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:src="@drawable/outgoing_invoices" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/homePageOutgoingInvoiceText"
@@ -255,6 +255,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="14dp"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/home_card_background"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toStartOf="@+id/homePageIncomingCardView"
@@ -273,13 +274,13 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
+                android:src="@drawable/cancellation_appeal_requests"
                 app:layout_constraintBottom_toTopOf="@+id/homePageCancellationAppealRequestsText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:src="@drawable/cancellation_appeal_requests" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/homePageCancellationAppealRequestsText"
@@ -296,6 +297,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/homePageCancellationAppealRequestsImg" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/homePageExitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

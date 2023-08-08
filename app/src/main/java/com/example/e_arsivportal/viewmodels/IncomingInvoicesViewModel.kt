@@ -5,13 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.e_arsivportal.models.GetInvoicesModel
 import com.example.e_arsivportal.models.IncomingInvoiceModel
-import com.example.e_arsivportal.service.ApiService
+import com.example.e_arsivportal.repo.RepositoryInterface
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class IncomingInvoicesViewModel: ViewModel() {
+@HiltViewModel
+class IncomingInvoicesViewModel @Inject constructor(
+        private val repository: RepositoryInterface
+) : ViewModel() {
 
     private var job : Job? = null
-    private val apiService = ApiService()
 
     val liveData = MutableLiveData<List<IncomingInvoiceModel>>()
 
@@ -23,7 +27,7 @@ class IncomingInvoicesViewModel: ViewModel() {
         }
 
         job = CoroutineScope(Dispatchers.IO).launch(handler) {
-            val response = apiService.getAllIssuedToMe(GetInvoicesModel(startDate,endDate))
+            val response = repository.getAllIssuedToMe(GetInvoicesModel(startDate,endDate))
 
             withContext(Dispatchers.Main){
                 if(response.isSuccessful) {

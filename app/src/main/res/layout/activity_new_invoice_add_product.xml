@@ -23,6 +23,7 @@
             android:id="@+id/newInvoiceAddProductPageUnitAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
             android:hint="Birim"
             android:imeOptions="actionNext"
             android:inputType="text"
@@ -41,7 +42,7 @@
         app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageTaxAmountTextInputLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/newInvoiceAddProductPageLeftGuideline"
-        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageAddTaxTextInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageAddCustomTaxTextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -122,18 +123,19 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="KDV Oranı" />
+            android:hint="KDV Oranı"
+            android:text="18" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/newInvoiceAddProductNextButton"
+        android:id="@+id/newInvoiceAddProductSaveButton"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="#196AA5"
-        android:text="İleri"
+        android:text="Kaydet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageRightGuideline"
         app:layout_constraintHorizontal_bias="1.0"
@@ -176,7 +178,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/newInvoiceAddProductPageAddTaxTextInputLayout"
+        android:id="@+id/newInvoiceAddProductPageAddCustomTaxTextInputLayout"
 
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="382dp"
@@ -192,6 +194,7 @@
             android:id="@+id/newInvoiceAddProductPageAddTaxAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
             android:hint="Vergi Ekle"
             android:imeOptions="actionNext"
             android:inputType="text"
@@ -214,7 +217,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Miktar" />
+            android:hint="Miktar"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <include
@@ -295,25 +299,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductServiceAmountTextView" />
 
             <TextView
-                android:id="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView"
+                android:id="@+id/newInvoiceAddProductPageProductTotalVatSymbolTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:text="18.00 TRY"
+                android:text="TRY"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductTotalGrandTotalTextView"
-                app:layout_constraintEnd_toEndOf="@+id/newInvoiceAddProductPageProductTotalServiceAmountTextView"
-                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductTotalServiceAmountTextView" />
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductTotalGrandTotalSymbolTextView"
+                app:layout_constraintEnd_toEndOf="@+id/newInvoiceAddProductPageProductTotalServiceSymbolTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductTotalServiceSymbolTextView" />
 
             <TextView
-                android:id="@+id/newInvoiceAddProductPageProductTotalServiceAmountTextView"
+                android:id="@+id/newInvoiceAddProductPageProductTotalServiceSymbolTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="100.00 TRY"
+                android:text="TRY"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView"
+                app:layout_constraintBottom_toTopOf="@+id/newInvoiceAddProductPageProductTotalVatSymbolTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed" />
@@ -331,16 +335,46 @@
                 app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductVatAmountTextView" />
 
             <TextView
-                android:id="@+id/newInvoiceAddProductPageProductTotalGrandTotalTextView"
+                android:id="@+id/newInvoiceAddProductPageProductTotalGrandTotalSymbolTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="20dp"
-                android:text="118.00 TRY"
+                android:text="TRY"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView"
-                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView" />
+                app:layout_constraintEnd_toEndOf="@+id/newInvoiceAddProductPageProductTotalVatSymbolTextView"
+                app:layout_constraintTop_toBottomOf="@+id/newInvoiceAddProductPageProductTotalVatSymbolTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductTotalServiceAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/newInvoiceAddProductPageProductTotalServiceSymbolTextView"
+                app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageProductTotalServiceSymbolTextView"
+                app:layout_constraintTop_toTopOf="@+id/newInvoiceAddProductPageProductTotalServiceSymbolTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductTotalVatAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/newInvoiceAddProductPageProductTotalVatSymbolTextView"
+                app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageProductTotalVatSymbolTextView"
+                app:layout_constraintTop_toTopOf="@+id/newInvoiceAddProductPageProductTotalVatSymbolTextView" />
+
+            <TextView
+                android:id="@+id/newInvoiceAddProductPageProductTotalGrandTotalAmountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/newInvoiceAddProductPageProductTotalGrandTotalSymbolTextView"
+                app:layout_constraintEnd_toStartOf="@+id/newInvoiceAddProductPageProductTotalGrandTotalSymbolTextView"
+                app:layout_constraintTop_toTopOf="@+id/newInvoiceAddProductPageProductTotalGrandTotalSymbolTextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

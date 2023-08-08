@@ -30,7 +30,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="VKN/TCKN" />
+            android:hint="VKN/TCKN"
+            android:maxLength="11" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +91,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/newInvoiceCustomerChoicePageSurnameTaxDepartmentInputLayout"
+        android:id="@+id/newInvoiceCustomerChoicePageTaxDepartmentInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -108,7 +109,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/newInvoiceCustomerChoicePageSurnameAdressInputLayout"
+        android:id="@+id/newInvoiceCustomerChoicePageAdressInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -117,7 +118,7 @@
         app:boxStrokeWidth="0dp"
         app:layout_constraintEnd_toStartOf="@+id/newInvoiceCustomerChoicePageRightGuideline"
         app:layout_constraintStart_toStartOf="@+id/newInvoiceCustomerChoicePageLeftGuideline"
-        app:layout_constraintTop_toBottomOf="@+id/newInvoiceCustomerChoicePageSurnameTaxDepartmentInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/newInvoiceCustomerChoicePageTaxDepartmentInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

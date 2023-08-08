@@ -12,8 +12,9 @@ import com.example.biochakraastralterapi.adapters.ProductsAdapter
 import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityProductsBinding
 import com.example.e_arsivportal.viewmodels.ProductsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ProductsActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityProductsBinding

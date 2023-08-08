@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.e_arsivportal.models.ProductModel
 import com.example.e_arsivportal.service.Database
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 
 class AddProductViewModel(): ViewModel() {

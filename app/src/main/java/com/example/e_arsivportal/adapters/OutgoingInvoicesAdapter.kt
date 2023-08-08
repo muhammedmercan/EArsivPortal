@@ -9,12 +9,18 @@ import com.example.e_arsivportal.databinding.OutgoingInvoiceItemBinding
 import com.example.e_arsivportal.models.IncomingInvoiceModel
 import com.example.e_arsivportal.models.OutgoingInvoiceModel
 
-class OutgoingInvoicesAdapter(private val invoiceList: List<OutgoingInvoiceModel>, private val context: Context,private val reviewButtonListener: OutgoingInvoicesAdapter.CustomViewHolderListener) :
+class OutgoingInvoicesAdapter(private val invoiceList: List<OutgoingInvoiceModel>, private val context: Context,private val buttonsListener: OutgoingInvoicesAdapter.CustomViewHolderListener
+) :
     RecyclerView.Adapter<OutgoingInvoicesAdapter.ViewHolder>() {
 
     interface CustomViewHolderListener{
         fun review(ettn : String)
+        fun share(ettn: String)
+
+        fun repeat(ettn: String)
+
     }
+
 
     class ViewHolder(val binding: OutgoingInvoiceItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -46,9 +52,20 @@ class OutgoingInvoicesAdapter(private val invoiceList: List<OutgoingInvoiceModel
 
         holder.binding.outgoingInvoiceItemPreviewImageView.setOnClickListener() {
 
-            reviewButtonListener.review(invoiceList[position].ettn)
+            println(invoiceList[position].ettn)
+            buttonsListener.review(invoiceList[position].ettn)
 
 
+        }
+
+        holder.binding.outgoingInvoiceItemShareImageView.setOnClickListener() {
+
+            buttonsListener.share(invoiceList[position].ettn)
+        }
+
+        holder.binding.outgoingInvoiceItemRepeatImageView.setOnClickListener() {
+
+            buttonsListener.repeat(invoiceList[position].ettn)
         }
 
 

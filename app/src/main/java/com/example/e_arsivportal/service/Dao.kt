@@ -4,6 +4,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.e_arsivportal.models.CustomerModel
+import com.example.e_arsivportal.models.LoginModel
 import com.example.e_arsivportal.models.ProductModel
 
 @androidx.room.Dao
@@ -21,8 +22,6 @@ interface Dao {
 
     @Query("DELETE FROM products WHERE id = :id")
     suspend fun deleteProduct(id:Int)
-
-
 
     @Insert
     suspend fun addCustomer(product: CustomerModel): Long

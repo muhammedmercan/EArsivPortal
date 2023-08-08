@@ -35,6 +35,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
             android:hint="İrsaliye Tarihi" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,12 +89,13 @@
         app:layout_constraintTop_toBottomOf="@+id/newInvoiceInformationPageDateOfIssueTextInputLayout">
 
         <AutoCompleteTextView
-            android:id="@+id/registerPageAutoCompleteTextViewZodiacSign"
+            android:id="@+id/newInvoiceInformationPageDocumentCurrencyAutoComplateTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Döküman Para Birimi"
             android:imeOptions="actionNext"
             android:inputType="text"
+            android:focusable="false"
             android:textCursorDrawable="@null" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +119,7 @@
             android:hint="Fatura Tipi"
             android:imeOptions="actionNext"
             android:inputType="text"
+            android:focusable="false"
             android:textCursorDrawable="@null" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,6 +140,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
             android:hint="Düzenlenme Tarihi" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,6 +159,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
             android:hint="Düzenlenme Saati" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -55,7 +55,6 @@ class AddProductActivity : AppCompatActivity() {
         binding.addProductPagePriceTextInputLayout.editText?.doAfterTextChanged {
             checkEmpty(binding.addProductPagePriceTextInputLayout, it.isNullOrEmpty())
         }
-
     }
 
     fun checkEmpty(layout: TextInputLayout, boolean: Boolean) {

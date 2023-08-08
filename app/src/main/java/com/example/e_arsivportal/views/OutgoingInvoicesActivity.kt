@@ -5,12 +5,10 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.print.PdfConverter
 import android.view.View
-import android.webkit.WebSettings
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -28,11 +26,12 @@ import com.example.e_arsivportal.databinding.ActivityOutgoingInvoicesBinding
 import com.example.e_arsivportal.models.OutgoingInvoiceModel
 import com.example.e_arsivportal.viewmodels.OutgoingInvoicesViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+@AndroidEntryPoint
 class OutgoingInvoicesActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityOutgoingInvoicesBinding
@@ -45,6 +44,9 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
 
+    var mission = ""
+
+
 
 
     val CustomViewHolderListener = object: OutgoingInvoicesAdapter.CustomViewHolderListener {
@@ -53,6 +55,23 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         override fun review(ettn: String) {
 
             viewModel.getHtml(context,ettn)
+
+            mission = "preview"
+
+        }
+
+        override fun share(ettn: String) {
+
+            viewModel.getHtml(context,ettn)
+
+
+            mission = "share"
+
+        }
+
+        override fun repeat(ettn: String) {
+
+            viewModel.getDocument(context,ettn)
 
         }
     }
@@ -160,7 +179,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.toolBarLeftIcon).text = "Geri"
         findViewById<TextView>(R.id.toolBarRightIcon).text = ""
-        findViewById<TextView>(R.id.toolBarTittle).text = "Gelen Faturalar"
+        findViewById<TextView>(R.id.toolBarTittle).text = "Giden Faturalar"
 
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
             onBackPressedDispatcher.onBackPressed()
@@ -179,8 +198,6 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
 
         val formatter = SimpleDateFormat("dd/MM/yyyy")
-
-
 
 
         when (view.getId()) {
@@ -237,6 +254,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         }
     }
 
+
     private fun filter(text: String) {
         // creating a new array list to filter our data.
         val filteredlist: ArrayList<OutgoingInvoiceModel> = ArrayList<OutgoingInvoiceModel>()
@@ -269,6 +287,36 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         }
     }
 
+
+
+    private fun preview() {
+
+        val intent = Intent(this, WebViewActivity::class.java)
+        startActivity(intent)
+
+        mission = ""
+
+    }
+
+
+    private fun share() {
+
+        val directoryPath: String = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
+
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.type = "text/html"
+
+
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(directoryPath + "/name_file.html"))
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+
+        mission = ""
+
+    }
+
     fun observeLiveData() {
 
         viewModel.invoicesliveData.observe(this, Observer { list ->
@@ -294,22 +342,31 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
             htmlString.let {
 
-                println(htmlString)
+                //println(htmlString)
 
-                val converter: PdfConverter? = PdfConverter.instance
                 val directoryPath: String = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
                 File(directoryPath, "name_file.html").writeText(htmlString)
 
-                //converter?.convert(context, htmlString, file)
+
+                if (mission.equals("preview")) {
+                    preview()
+                }
+
+                if (mission.equals("share")) {
+                    share()
+                }
 
 
-                val intent = Intent(this, WebViewActivity::class.java)
-                startActivity(intent)
 
 
             }
         }
         )
+
+        viewModel.documentLiveData.observe(this, Observer {
+
+            println(it.toString())
+        })
 
 
 

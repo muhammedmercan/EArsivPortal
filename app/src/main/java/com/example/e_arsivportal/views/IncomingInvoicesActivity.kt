@@ -16,10 +16,11 @@ import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityIncomingInvoicesBinding
 import com.example.e_arsivportal.models.IncomingInvoiceModel
 import com.example.e_arsivportal.viewmodels.IncomingInvoicesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+@AndroidEntryPoint
 class IncomingInvoicesActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityIncomingInvoicesBinding

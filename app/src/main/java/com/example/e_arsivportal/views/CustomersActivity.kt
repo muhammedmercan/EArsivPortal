@@ -47,6 +47,10 @@ class CustomersActivity : AppCompatActivity() {
         _binding = ActivityCustomersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        findViewById<TextView>(R.id.toolBarLeftIcon).text = "Geri"
+        findViewById<TextView>(R.id.toolBarRightIcon).text = "Müşteri Ekle"
+        findViewById<TextView>(R.id.toolBarTittle).text = "Müşteriler"
+
         context = this
 
         viewModel = ViewModelProvider(this).get(CustomersViewModel::class.java)
@@ -55,11 +59,6 @@ class CustomersActivity : AppCompatActivity() {
         viewModel.getDataFromRoom(applicationContext)
 
         observeLiveData()
-
-
-        findViewById<TextView>(R.id.toolBarLeftIcon).text = "Geri"
-        findViewById<TextView>(R.id.toolBarRightIcon).text = "Ürün Ekle"
-        findViewById<TextView>(R.id.toolBarTittle).text = "Ürünler"
 
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
             onBackPressedDispatcher.onBackPressed()

@@ -7,7 +7,9 @@ import android.webkit.WebSettings
 import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityHomeBinding
 import com.example.e_arsivportal.databinding.ActivityWebViewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WebViewActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityWebViewBinding
@@ -25,5 +27,6 @@ class WebViewActivity : AppCompatActivity() {
 
 
         binding.webView.loadUrl(Environment.getExternalStorageDirectory().toString() + "/" + Environment.DIRECTORY_DOWNLOADS.toString() + "/name_file.html")
+        println(Environment.getExternalStorageDirectory().toString() + "/" + Environment.DIRECTORY_DOWNLOADS.toString() + "/name_file.html")
     }
 }
