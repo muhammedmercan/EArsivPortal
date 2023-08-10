@@ -17,8 +17,7 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-    private lateinit var _binding: ActivityHomeBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityHomeBinding
 
     private lateinit var viewModel: HomeViewModel
 
@@ -26,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)

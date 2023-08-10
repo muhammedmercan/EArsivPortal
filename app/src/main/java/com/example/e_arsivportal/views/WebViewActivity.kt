@@ -12,13 +12,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class WebViewActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityWebViewBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityWebViewBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityWebViewBinding.inflate(layoutInflater)
+        binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val settings: WebSettings = binding.webView.getSettings()

@@ -17,8 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProductsActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityProductsBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityProductsBinding
 
     private lateinit var viewModel: ProductsViewModel
     private lateinit var context: Context
@@ -28,7 +27,7 @@ class ProductsActivity : AppCompatActivity() {
 
 
         override fun onCustomItemClicked(id: Int) {
-            viewModel.deleteProduct(id,context)
+            viewModel.deleteProduct(id)
 
         }
 
@@ -36,14 +35,14 @@ class ProductsActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        viewModel.getDataFromRoom(context)
+        viewModel.getDataFromRoom()
         observeLiveData()
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityProductsBinding.inflate(layoutInflater)
+        binding = ActivityProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -53,7 +52,7 @@ class ProductsActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ProductsViewModel::class.java)
 
 
-        viewModel.getDataFromRoom(applicationContext)
+        viewModel.getDataFromRoom()
 
         observeLiveData()
 
@@ -88,10 +87,10 @@ class ProductsActivity : AppCompatActivity() {
 
             productList.let {
 
-                _binding?.productsPageRecyclerview?.adapter =
+                binding?.productsPageRecyclerview?.adapter =
                     this?.let { ProductsAdapter(productList, it, deleteButtonListener) }
 
-                _binding?.productsPageRecyclerview?.layoutManager = LinearLayoutManager(this)
+                binding?.productsPageRecyclerview?.layoutManager = LinearLayoutManager(this)
 
 
             }

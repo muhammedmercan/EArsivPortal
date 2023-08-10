@@ -1,43 +1,40 @@
 package com.example.e_arsivportal.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.e_arsivportal.models.CustomerModel
-import com.example.e_arsivportal.service.Database
+import com.example.e_arsivportal.repo.RepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import javax.inject.Inject
+@HiltViewModel
 
-class AddCustomerViewModel(): ViewModel() {
+class AddCustomerViewModel @Inject constructor(
+    private val repository: RepositoryInterface
+) : ViewModel() {
 
-
-    private var job : Job? = null
     val liveData = MutableLiveData<Long>()
     val liveDataUpdate = MutableLiveData<Int>()
 
 
-    fun updateDataInRoom(customer: CustomerModel, context: Context) {
+    fun updateDataInRoom(customer: CustomerModel) {
 
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val returnValue = Database(context).dao().updateCustomer(customer)
+        viewModelScope.launch {
 
+            val returnValue = repository.updateCustomer(customer)
             liveDataUpdate.postValue(returnValue)
 
         }
-
     }
 
-    fun saveDataToRoom(customer: CustomerModel, context: Context) {
+    fun saveDataToRoom(customer: CustomerModel) {
 
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val returnValue = Database(context).dao().addCustomer(customer)
+        viewModelScope.launch {
 
+            val returnValue = repository.addCustomer(customer)
             liveData.postValue(returnValue)
 
         }
     }
-
-
-
-
 }

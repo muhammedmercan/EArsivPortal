@@ -34,8 +34,7 @@ import java.util.*
 @AndroidEntryPoint
 class OutgoingInvoicesActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityOutgoingInvoicesBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityOutgoingInvoicesBinding
 
     private lateinit var viewModel: OutgoingInvoicesViewModel
     private lateinit var context: Context
@@ -71,7 +70,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
         override fun repeat(ettn: String) {
 
-            viewModel.getDocument(context,ettn)
+            viewModel.getDocument(ettn)
 
         }
     }
@@ -81,7 +80,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityOutgoingInvoicesBinding.inflate(layoutInflater)
+        binding = ActivityOutgoingInvoicesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         registerLauncher()
@@ -125,7 +124,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
         binding.outgoingInvoicesPageEndDateTextInputLayout.editText?.setText(currentDateString)
 
-        viewModel.getOutgoingInvoices(this,binding.outgoingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+        viewModel.getOutgoingInvoices(binding.outgoingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
             binding.outgoingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
 
         binding.outgoingInvoicesPageStartDateTextInputLayout?.editText?.setOnClickListener() {
@@ -163,7 +162,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
         binding.outgoingInvoicesPageStartDateTextInputLayout.editText?.doAfterTextChanged {
 
-            viewModel.getOutgoingInvoices(this,binding.outgoingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+            viewModel.getOutgoingInvoices(binding.outgoingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
                 binding.outgoingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
 
         }
@@ -171,7 +170,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
         binding.outgoingInvoicesPageEndDateTextInputLayout.editText?.doAfterTextChanged {
 
-            viewModel.getOutgoingInvoices(this,binding.outgoingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+            viewModel.getOutgoingInvoices(binding.outgoingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
                 binding.outgoingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
 
         }
@@ -281,7 +280,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         } else {
             // at last we are passing that filtered
             // list to our adapter class.
-            _binding?.outgoingInvoicesPageRecyclerView?.adapter =
+            binding?.outgoingInvoicesPageRecyclerView?.adapter =
 
                 context?.let { OutgoingInvoicesAdapter(filteredlist, it,CustomViewHolderListener) }
         }
@@ -327,11 +326,11 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
                 println(list.toString())
 
-                _binding?.outgoingInvoicesPageRecyclerView?.adapter =
+                binding?.outgoingInvoicesPageRecyclerView?.adapter =
                     this?.let { OutgoingInvoicesAdapter(list, it,CustomViewHolderListener) }
                 //this?.let { OutgoingInvoices(invoiceList, it, deleteButtonListener) }
 
-                _binding?.outgoingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
+                binding?.outgoingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
 
             }
         }

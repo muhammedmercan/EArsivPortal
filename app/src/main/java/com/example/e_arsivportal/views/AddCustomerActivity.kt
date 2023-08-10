@@ -12,18 +12,17 @@ import com.example.e_arsivportal.databinding.ActivityAddCustomerBinding
 import com.example.e_arsivportal.models.CustomerModel
 import com.example.e_arsivportal.viewmodels.AddCustomerViewModel
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddCustomerActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityAddCustomerBinding
-    private val binding get() = _binding!!
-
+    private lateinit var binding: ActivityAddCustomerBinding
 
     private lateinit var viewModel: AddCustomerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityAddCustomerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(AddCustomerViewModel::class.java)
@@ -117,7 +116,7 @@ class AddCustomerActivity : AppCompatActivity() {
 
 
             viewModel.updateDataInRoom(
-                customer, applicationContext
+                customer
             )
             observeLiveData()
         }
@@ -132,7 +131,7 @@ class AddCustomerActivity : AppCompatActivity() {
                     binding.addCustomerPageSurnameTextInputLayout.editText?.text.toString(),
                     binding.addCustomerPageTaxDepartmentInputLayout.editText?.text.toString(),
                     binding.addCustomerPageAdressInputLayout.editText?.text.toString()
-                    ), applicationContext
+                    ),
             )
             observeLiveData()
         }

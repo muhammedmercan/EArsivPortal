@@ -23,8 +23,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityLoginBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityLoginBinding
 
 
 
@@ -36,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)

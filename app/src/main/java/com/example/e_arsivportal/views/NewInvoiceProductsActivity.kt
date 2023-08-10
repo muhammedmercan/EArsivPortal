@@ -22,8 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewInvoiceProductsActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityNewInvoiceProductsBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityNewInvoiceProductsBinding
 
     val REQUEST_CODE_ADD_PRODUCT = 1
 
@@ -41,7 +40,7 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityNewInvoiceProductsBinding.inflate(layoutInflater)
+        binding = ActivityNewInvoiceProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(NewInvoiceProductsViewModel::class.java)
@@ -117,11 +116,11 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
 
             it.let {
 
-                _binding?.newInvoiceProductsPageRecyclerView?.adapter =
+                binding?.newInvoiceProductsPageRecyclerView?.adapter =
                     this?.let { NewInvoiceProductsAdapter(productList, it) }
                 //this?.let { IncomingInvoices(invoiceList, it, deleteButtonListener) }
 
-                _binding?.newInvoiceProductsPageRecyclerView?.layoutManager =
+                binding?.newInvoiceProductsPageRecyclerView?.layoutManager =
                     LinearLayoutManager(this)
 
 

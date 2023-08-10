@@ -3,6 +3,7 @@ package com.example.e_arsivportal.viewmodels
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.e_arsivportal.models.*
 import com.example.e_arsivportal.repo.RepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,15 +14,11 @@ class OutgoingInvoicesViewModel @Inject constructor(
     private val repository: RepositoryInterface
 ) : ViewModel() {
 
-    private var job : Job? = null
-
     val invoicesliveData = MutableLiveData<List<OutgoingInvoiceModel>>()
     val htmlLiveData = MutableLiveData<String>()
     val documentLiveData = MutableLiveData<DocumentModel>()
 
-
-
-    fun getDocument(context: Context, ettn: String) {
+    fun getDocument(ettn: String) {
 
         val handler = CoroutineExceptionHandler {context, throwable ->
             //Toast.makeText(Context,"Bir sorun meydana geldi",Toast.LENGTH_SHORT).show()
@@ -29,44 +26,35 @@ class OutgoingInvoicesViewModel @Inject constructor(
             println(throwable.toString() + "asdsad")
         }
 
-        job = CoroutineScope(Dispatchers.IO).launch(handler) {
+        viewModelScope.launch(handler) {
             val response = repository.getDocument(CommonStringModel(ettn))
 
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful) {
-                    response.body()?.let {
-
-                        documentLiveData.value = it
-
-                    }
+            if(response.isSuccessful) {
+                response.body()?.let {
+                    documentLiveData.value = it
                 }
             }
-
         }
-
     }
 
-    fun getOutgoingInvoices(context: Context, startDate:String, endDate:String) {
+    fun getOutgoingInvoices(startDate:String, endDate:String) {
 
         val handler = CoroutineExceptionHandler {context, throwable ->
             //Toast.makeText(Context,"Bir sorun meydana geldi",Toast.LENGTH_SHORT).show()
         }
 
-        job = CoroutineScope(Dispatchers.IO).launch(handler) {
+        viewModelScope.launch(handler) {
             val response = repository.getAllOutgoingInvoices(GetInvoicesModel(startDate,endDate))
 
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful) {
-                    response.body()?.let {
-
-                        invoicesliveData.value = it
+            if(response.isSuccessful) {
+                response.body()?.let {
+                    invoicesliveData.value = it
 
                     }
                 }
             }
-
         }
-    }
+
 
     fun getHtml(context: Context, ettn : String) {
 
@@ -74,21 +62,14 @@ class OutgoingInvoicesViewModel @Inject constructor(
             //Toast.makeText(Context,"Bir sorun meydana geldi",Toast.LENGTH_SHORT).show()
         }
 
-        job = CoroutineScope(Dispatchers.IO).launch(handler) {
+        viewModelScope.launch(handler) {
             val response = repository.getHtml(CommonStringModel(ettn))
 
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful) {
-                    response.body()?.let {
-
-                        htmlLiveData.value = it
-
-                    }
+            if(response.isSuccessful) {
+                response.body()?.let {
+                    htmlLiveData.value = it
                 }
             }
-
         }
-
-
     }
 }

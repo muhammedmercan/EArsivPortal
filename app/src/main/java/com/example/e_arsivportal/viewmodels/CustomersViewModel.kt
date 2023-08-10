@@ -3,13 +3,10 @@ package com.example.e_arsivportal.viewmodels
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.e_arsivportal.models.CustomerModel
 import com.example.e_arsivportal.repo.RepositoryInterface
-import com.example.e_arsivportal.service.Database
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
@@ -17,31 +14,28 @@ class CustomersViewModel @Inject constructor(
     private val repository: RepositoryInterface
 ) : ViewModel() {
 
-    private var job : Job? = null
     val liveData = MutableLiveData<MutableList<CustomerModel>>()
 
 
-    fun getDataFromRoom(context: Context) {
+    fun getDataFromRoom() {
 
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val customers = Database(context).dao().getAllCustomers()
+        viewModelScope.launch {
+
+            val customers = repository.getAllCustomers()
 
             liveData.postValue(customers)
 
             //liveData.value = produtcs
-
-        }
-    }
-
-    fun deleteCustomer(id: Int, context: Context) {
-
-        job = CoroutineScope(Dispatchers.IO).launch {
-            Database(context).dao().deleteCustomer(id)
-
-
-
         }
 
     }
 
+    fun deleteCustomer(id: Int) {
+
+        viewModelScope.launch {
+
+            repository.deleteCustomer(id)
+
+        }
+    }
 }

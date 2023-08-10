@@ -1,9 +1,9 @@
 package com.example.e_arsivportal.viewmodels
 
-import android.content.Context
-import android.widget.Toast
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.e_arsivportal.models.LoginModel
 import com.example.e_arsivportal.repo.RepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +15,6 @@ class LoginViewModel @Inject constructor(
     private val repository: RepositoryInterface
 ) : ViewModel() {
 
-    private var job : Job? = null
-
     val liveData = MutableLiveData<String>()
 
     fun login(username : String, password : String) {
@@ -27,20 +25,16 @@ class LoginViewModel @Inject constructor(
 
         }
 
-        job = CoroutineScope(Dispatchers.IO).launch(handler) {
+        viewModelScope.launch(handler) {
             val response = repository.login(LoginModel(username,password))
 
             println(response)
 
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful) {
-                    response.body()?.let {
+            if(response.isSuccessful) {
+                response.body()?.let {
 
-                        println(it)
-
-                        liveData.value = it
-
-                    }
+                    println(it)
+                    liveData.value = it
                 }
             }
         }

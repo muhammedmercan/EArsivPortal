@@ -15,12 +15,12 @@ import com.example.e_arsivportal.databinding.ActivityCustomersBinding
 import com.example.e_arsivportal.databinding.ActivityProductsBinding
 import com.example.e_arsivportal.viewmodels.CustomersViewModel
 import com.example.e_arsivportal.viewmodels.ProductsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CustomersActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityCustomersBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityCustomersBinding
 
     private lateinit var viewModel: CustomersViewModel
     private lateinit var context: Context
@@ -30,21 +30,21 @@ class CustomersActivity : AppCompatActivity() {
 
 
         override fun onCustomItemClicked(id: Int) {
-            viewModel.deleteCustomer(id,context)
+            viewModel.deleteCustomer(id)
 
         }
     }
 
     override fun onRestart() {
         super.onRestart()
-        viewModel.getDataFromRoom(context)
+        viewModel.getDataFromRoom()
         observeLiveData()
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityCustomersBinding.inflate(layoutInflater)
+        binding = ActivityCustomersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         findViewById<TextView>(R.id.toolBarLeftIcon).text = "Geri"
@@ -56,7 +56,7 @@ class CustomersActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(CustomersViewModel::class.java)
 
 
-        viewModel.getDataFromRoom(applicationContext)
+        viewModel.getDataFromRoom()
 
         observeLiveData()
 
@@ -82,10 +82,10 @@ class CustomersActivity : AppCompatActivity() {
             customerList.let {
                 println(customerList.toString())
 
-                _binding?.customersPageRecyclerview?.adapter =
+                binding?.customersPageRecyclerview?.adapter =
                     this?.let { CustomersAdapter(customerList, it, deleteButtonListener) }
 
-                _binding?.customersPageRecyclerview?.layoutManager = LinearLayoutManager(this)
+                binding?.customersPageRecyclerview?.layoutManager = LinearLayoutManager(this)
 
             }
         }

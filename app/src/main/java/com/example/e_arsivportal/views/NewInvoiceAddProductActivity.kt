@@ -19,15 +19,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewInvoiceAddProductActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityNewInvoiceAddProductBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityNewInvoiceAddProductBinding
 
     private var product = NewInvoiceProductModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityNewInvoiceAddProductBinding.inflate(layoutInflater)
+        binding = ActivityNewInvoiceAddProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         findViewById<TextView>(R.id.toolBarTittle).text = "Yeni Mal Hizmet"

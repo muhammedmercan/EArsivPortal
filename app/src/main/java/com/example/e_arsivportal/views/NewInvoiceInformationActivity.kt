@@ -17,15 +17,14 @@ import java.util.*
 @AndroidEntryPoint
 class NewInvoiceInformationActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityNewInvoiceInformationBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityNewInvoiceInformationBinding
 
     private var invoiceModel = InvoiceModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityNewInvoiceInformationBinding.inflate(layoutInflater)
+        binding = ActivityNewInvoiceInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         init()
@@ -56,7 +55,7 @@ class NewInvoiceInformationActivity : AppCompatActivity() {
         }
 
 
-        _binding.newInvoiceInformationPageNextButton.setOnClickListener() {
+        binding.newInvoiceInformationPageNextButton.setOnClickListener() {
 
             saveData()
 

@@ -12,7 +12,6 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-
     fun exit(context : Context) {
 
         CustomSharedPreferences.invoke(context).deleteUser()

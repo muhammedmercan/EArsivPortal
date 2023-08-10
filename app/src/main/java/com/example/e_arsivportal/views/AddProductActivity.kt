@@ -13,18 +13,19 @@ import com.example.e_arsivportal.databinding.ActivityAddProductBinding
 import com.example.e_arsivportal.models.ProductModel
 import com.example.e_arsivportal.viewmodels.AddProductViewModel
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddProductActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityAddProductBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityAddProductBinding
 
 
     private lateinit var viewModel: AddProductViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityAddProductBinding.inflate(layoutInflater)
+        binding = ActivityAddProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(AddProductViewModel::class.java)
@@ -130,7 +131,7 @@ class AddProductActivity : AppCompatActivity() {
 
 
             viewModel.updateDataInRoom(
-                product, applicationContext
+                product
             )
             observeLiveData()
         }
@@ -143,7 +144,7 @@ class AddProductActivity : AppCompatActivity() {
                     binding.addProductPageUnitTextInputLayout.editText?.text.toString(),
                     binding.addProductPagePriceTextInputLayout.editText?.text.toString().toFloat(),
                     binding.addProductPageVatRateTextInputLayout.editText?.text.toString().toInt()
-                ), applicationContext
+                )
             )
             observeLiveData()
         }

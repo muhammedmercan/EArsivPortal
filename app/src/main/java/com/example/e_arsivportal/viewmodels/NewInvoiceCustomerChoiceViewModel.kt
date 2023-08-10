@@ -2,6 +2,7 @@ package com.example.e_arsivportal.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.e_arsivportal.models.CommonStringModel
 import com.example.e_arsivportal.models.RecipientDataModel
 import com.example.e_arsivportal.repo.RepositoryInterface
@@ -13,10 +14,8 @@ class NewInvoiceCustomerChoiceViewModel @Inject constructor(
     private val repository: RepositoryInterface
 ) : ViewModel() {
 
-    private var job : Job? = null
 
     val liveData = MutableLiveData<RecipientDataModel>()
-
 
     fun getDataFromApi(vknTckn : String) {
 
@@ -24,23 +23,17 @@ class NewInvoiceCustomerChoiceViewModel @Inject constructor(
             //Toast.makeText(Context,"Bir sorun meydana geldi",Toast.LENGTH_SHORT).show()
         }
 
-        job = CoroutineScope(Dispatchers.IO).launch(handler) {
+        viewModelScope.launch(handler) {
             val response = repository.getRecipientData(CommonStringModel(vknTckn))
 
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful) {
-                    response.body()?.let {
 
-                        liveData.value = it
+            if(response.isSuccessful) {
+
+                response.body()?.let {
+                    liveData.value = it
 
                     }
                 }
-            }
-
         }
-
-
     }
-
-
 }

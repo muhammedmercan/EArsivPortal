@@ -23,8 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewInvoiceCustomerChoiceActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityNewInvoiceCustomerChoiceBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityNewInvoiceCustomerChoiceBinding
 
     private var invoiceModel = InvoiceModel()
 
@@ -35,7 +34,7 @@ class NewInvoiceCustomerChoiceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityNewInvoiceCustomerChoiceBinding.inflate(layoutInflater)
+        binding = ActivityNewInvoiceCustomerChoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         findViewById<TextView>(R.id.toolBarLeftIcon).text = "İptal"

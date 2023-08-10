@@ -23,8 +23,7 @@ import java.util.*
 @AndroidEntryPoint
 class IncomingInvoicesActivity : AppCompatActivity() {
 
-    private lateinit var _binding: ActivityIncomingInvoicesBinding
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityIncomingInvoicesBinding
 
     private lateinit var viewModel: IncomingInvoicesViewModel
     private lateinit var context: Context
@@ -47,7 +46,7 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityIncomingInvoicesBinding.inflate(layoutInflater)
+        binding = ActivityIncomingInvoicesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         context = this
@@ -77,7 +76,7 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
         binding.incomingInvoicesPageEndDateTextInputLayout.editText?.setText(currentDateString)
 
-        viewModel.getIncomingInvoices(this,binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+        viewModel.getIncomingInvoices(binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
             binding.incomingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
 
         binding.incomingInvoicesPageStartDateTextInputLayout?.editText?.setOnClickListener() {
@@ -115,7 +114,7 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
         binding.incomingInvoicesPageStartDateTextInputLayout.editText?.doAfterTextChanged {
 
-            viewModel.getIncomingInvoices(this,binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+            viewModel.getIncomingInvoices(binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
                 binding.incomingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
 
         }
@@ -123,7 +122,7 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
         binding.incomingInvoicesPageEndDateTextInputLayout.editText?.doAfterTextChanged {
 
-            viewModel.getIncomingInvoices(this,binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
+            viewModel.getIncomingInvoices(binding.incomingInvoicesPageStartDateTextInputLayout.editText?.text.toString(),
                 binding.incomingInvoicesPageEndDateTextInputLayout.editText?.text.toString())
 
         }
@@ -232,7 +231,7 @@ class IncomingInvoicesActivity : AppCompatActivity() {
         } else {
             // at last we are passing that filtered
             // list to our adapter class.
-            _binding?.incomingInvoicesPageRecyclerView?.adapter =
+            binding?.incomingInvoicesPageRecyclerView?.adapter =
 
                 context?.let { IncomingInvoicesAdapter(filteredlist, it) }
         }
@@ -246,11 +245,11 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
             invoiceList.let {
 
-                _binding?.incomingInvoicesPageRecyclerView?.adapter =
+                binding?.incomingInvoicesPageRecyclerView?.adapter =
                     this?.let { IncomingInvoicesAdapter(list, it) }
                     //this?.let { IncomingInvoices(invoiceList, it, deleteButtonListener) }
 
-                _binding?.incomingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
+                binding?.incomingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
 
             }
         }
