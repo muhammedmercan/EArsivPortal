@@ -56,7 +56,7 @@ class CustomersActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(CustomersViewModel::class.java)
 
 
-        viewModel.getDataFromRoom()
+        //viewModel.getDataFromRoom()
 
         observeLiveData()
 

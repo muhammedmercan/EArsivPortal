@@ -70,7 +70,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.homePageExitButton.setOnClickListener() {
 
-            viewModel.exit(this)
+            viewModel.exit()
 
             intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)

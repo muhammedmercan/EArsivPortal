@@ -6,7 +6,7 @@ import android.preference.PreferenceManager
 import androidx.core.content.edit
 
 class CustomSharedPreferences {
-
+/*
     companion object {
 
         private var sharedPreferences: SharedPreferences? = null
@@ -44,4 +44,6 @@ class CustomSharedPreferences {
     fun getPassword() = sharedPreferences?.getString("password","")
 
 
+
+ */
 }

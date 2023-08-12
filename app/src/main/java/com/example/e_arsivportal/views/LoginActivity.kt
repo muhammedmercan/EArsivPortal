@@ -13,6 +13,7 @@ import com.example.e_arsivportal.databinding.ActivityIncomingInvoicesBinding
 import com.example.e_arsivportal.databinding.ActivityLoginBinding
 import com.example.e_arsivportal.databinding.ActivityNewInvoiceAddProductBinding
 import com.example.e_arsivportal.models.LoginModel
+import com.example.e_arsivportal.repo.Repository
 import com.example.e_arsivportal.service.Database
 import com.example.e_arsivportal.viewmodels.IncomingInvoicesViewModel
 import com.example.e_arsivportal.viewmodels.LoginViewModel
@@ -20,11 +21,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+    @Inject
+    lateinit var repository: Repository
 
+    private lateinit var binding: ActivityLoginBinding
 
 
     private lateinit var viewModel: LoginViewModel
@@ -50,8 +55,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun init() {
 
-        username = CustomSharedPreferences.invoke(this).getUsername().toString()
-        password = CustomSharedPreferences.invoke(this).getPassword().toString()
+        username = repository.getUsername().toString()
+        password = repository.getPassword().toString()
 
         binding.loginPageUsernameTextInputLayout.editText?.setText(username)
         binding.loginPagePasswordTextInputLayout.editText?.setText(password)
@@ -85,7 +90,9 @@ class LoginActivity : AppCompatActivity() {
 
             if (!Token.getValue().isNullOrEmpty()) {
 
-                CustomSharedPreferences.invoke(this).saveUser(binding.loginPageUsernameTextInputLayout.editText?.text.toString(),binding.loginPagePasswordTextInputLayout.editText?.text.toString())
+                val username = binding.loginPageUsernameTextInputLayout.editText?.text.toString()
+                val password = binding.loginPagePasswordTextInputLayout.editText?.text.toString()
+                repository.saveUser(username, password)
 
                 intent = Intent(this@LoginActivity,MainActivity::class.java)
                 startActivity(intent)

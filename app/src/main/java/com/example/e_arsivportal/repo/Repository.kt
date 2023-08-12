@@ -1,5 +1,8 @@
 package com.example.e_arsivportal.repo
 
+import android.content.SharedPreferences
+import androidx.core.content.edit
+import com.example.biochakraastralterapi.utilities.CustomSharedPreferences
 import com.example.e_arsivportal.models.CommonStringModel
 import com.example.e_arsivportal.models.CreateInvoiceModel
 import com.example.e_arsivportal.models.CustomerModel
@@ -18,7 +21,8 @@ import javax.inject.Inject
 class Repository @Inject constructor(
 
         private val dao: Dao,
-        private val retrofitApi: Api ) : RepositoryInterface {
+        private val retrofitApi: Api,
+        private val preferences: SharedPreferences) : RepositoryInterface {
     override suspend fun getAllIssuedToMe(requestModel: GetInvoicesModel): Response<List<IncomingInvoiceModel>> {
         return retrofitApi.getAllIssuedToMe(requestModel)
     }
@@ -77,6 +81,27 @@ class Repository @Inject constructor(
 
     override suspend fun deleteCustomer(id: Int) {
         return dao.deleteCustomer(id)
+    }
+
+    override fun saveUser(username:String, password:String) {
+
+        preferences.edit(commit = true) {
+            putString("username",username)
+            putString("password",password)
+        }
+    }
+
+    override fun deleteUser() {
+        return preferences.edit().clear().apply()
+    }
+
+
+    override fun getUsername() : String? {
+        return preferences.getString("username","")
+    }
+
+    override fun getPassword() : String? {
+        return preferences.getString("password","")
     }
 
 

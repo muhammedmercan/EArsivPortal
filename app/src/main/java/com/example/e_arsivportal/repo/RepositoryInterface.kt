@@ -44,4 +44,12 @@ interface RepositoryInterface {
 
     suspend fun deleteCustomer(id:Int)
 
+    fun saveUser(username:String, password:String)
+
+    fun deleteUser()
+
+    fun getUsername() : String?
+
+    fun getPassword() : String?
+
 }

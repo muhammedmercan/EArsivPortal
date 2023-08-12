@@ -12,9 +12,9 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    fun exit(context : Context) {
+    fun exit() {
 
-        CustomSharedPreferences.invoke(context).deleteUser()
+        repository.deleteUser()
 
     }
 }

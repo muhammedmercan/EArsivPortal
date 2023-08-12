@@ -1,6 +1,7 @@
 package com.example.e_arsivportal.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.e_arsivportal.repo.Repository
 import com.example.e_arsivportal.repo.RepositoryInterface
@@ -51,5 +52,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun injectNormalRepo(dao : Dao, api: Api) = Repository(dao,api) as RepositoryInterface
+    fun injectNormalRepo(dao : Dao, api: Api, preferences: SharedPreferences) = Repository(dao,api,preferences) as RepositoryInterface
+
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("mainPreference", Context.MODE_PRIVATE)
+    }
 }

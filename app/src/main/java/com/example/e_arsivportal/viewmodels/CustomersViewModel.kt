@@ -1,6 +1,6 @@
 package com.example.e_arsivportal.viewmodels
 
-import android.content.Context
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,13 +22,11 @@ class CustomersViewModel @Inject constructor(
         viewModelScope.launch {
 
             val customers = repository.getAllCustomers()
-
             liveData.postValue(customers)
 
-            //liveData.value = produtcs
         }
-
     }
+
 
     fun deleteCustomer(id: Int) {
 
