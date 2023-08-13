@@ -1,5 +1,6 @@
 package com.example.e_arsivportal.service
 
+import androidx.lifecycle.LiveData
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -30,7 +31,7 @@ interface Dao {
     suspend fun updateCustomer(product: CustomerModel): Int
 
     @Query("SELECT * FROM customers")
-    suspend fun getAllCustomers() : MutableList<CustomerModel>
+    fun getAllCustomers() : LiveData<MutableList<CustomerModel>>
 
     @Query("DELETE FROM customers WHERE id = :id")
     suspend fun deleteCustomer(id:Int)

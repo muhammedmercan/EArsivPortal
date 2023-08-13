@@ -9,16 +9,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.biochakraastralterapi.adapters.CustomersAdapter
-import com.example.biochakraastralterapi.adapters.ProductsAdapter
 import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityCustomersBinding
-import com.example.e_arsivportal.databinding.ActivityProductsBinding
 import com.example.e_arsivportal.viewmodels.CustomersViewModel
-import com.example.e_arsivportal.viewmodels.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CustomersActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var adapter: CustomersAdapter
 
     private lateinit var binding: ActivityCustomersBinding
 
@@ -26,18 +27,10 @@ class CustomersActivity : AppCompatActivity() {
     private lateinit var context: Context
 
 
-    val deleteButtonListener = object: CustomersAdapter.CustomViewHolderListener {
-
-
-        override fun onCustomItemClicked(id: Int) {
-            viewModel.deleteCustomer(id)
-
-        }
-    }
 
     override fun onRestart() {
         super.onRestart()
-        viewModel.getDataFromRoom()
+        //viewModel.getDataFromRoom()
         observeLiveData()
     }
 
@@ -46,19 +39,32 @@ class CustomersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCustomersBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this).get(CustomersViewModel::class.java)
+
 
         findViewById<TextView>(R.id.toolBarLeftIcon).text = "Geri"
         findViewById<TextView>(R.id.toolBarRightIcon).text = "Müşteri Ekle"
         findViewById<TextView>(R.id.toolBarTittle).text = "Müşteriler"
 
+        observeLiveData()
+
+        binding.customersPageRecyclerview?.adapter = adapter
+        binding.customersPageRecyclerview?.layoutManager = LinearLayoutManager(this)
+
+
+        adapter.setOnItemClickListener {
+            viewModel.deleteCustomer(it)
+        }
+
+
+
         context = this
 
-        viewModel = ViewModelProvider(this).get(CustomersViewModel::class.java)
 
 
         //viewModel.getDataFromRoom()
 
-        observeLiveData()
+
 
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
             onBackPressedDispatcher.onBackPressed()
@@ -79,15 +85,8 @@ class CustomersActivity : AppCompatActivity() {
 
         viewModel.liveData.observe(this, Observer { customerList ->
 
-            customerList.let {
-                println(customerList.toString())
+            adapter.customerList = customerList
 
-                binding?.customersPageRecyclerview?.adapter =
-                    this?.let { CustomersAdapter(customerList, it, deleteButtonListener) }
-
-                binding?.customersPageRecyclerview?.layoutManager = LinearLayoutManager(this)
-
-            }
         }
         )
     }

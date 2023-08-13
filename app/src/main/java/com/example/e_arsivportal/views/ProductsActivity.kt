@@ -25,7 +25,6 @@ class ProductsActivity : AppCompatActivity() {
 
     val deleteButtonListener = object: ProductsAdapter.CustomViewHolderListener {
 
-
         override fun onCustomItemClicked(id: Int) {
             viewModel.deleteProduct(id)
 

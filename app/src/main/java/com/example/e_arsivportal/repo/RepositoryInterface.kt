@@ -1,5 +1,6 @@
 package com.example.e_arsivportal.repo
 
+import androidx.lifecycle.LiveData
 import com.example.e_arsivportal.models.CommonStringModel
 import com.example.e_arsivportal.models.CreateInvoiceModel
 import com.example.e_arsivportal.models.CustomerModel
@@ -40,7 +41,7 @@ interface RepositoryInterface {
 
     suspend fun updateCustomer(product: CustomerModel): Int
 
-    suspend fun getAllCustomers() : MutableList<CustomerModel>
+    fun getAllCustomers() : LiveData<MutableList<CustomerModel>>
 
     suspend fun deleteCustomer(id:Int)
 

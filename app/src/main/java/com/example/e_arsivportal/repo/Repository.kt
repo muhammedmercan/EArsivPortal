@@ -2,7 +2,7 @@ package com.example.e_arsivportal.repo
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.example.biochakraastralterapi.utilities.CustomSharedPreferences
+import androidx.lifecycle.LiveData
 import com.example.e_arsivportal.models.CommonStringModel
 import com.example.e_arsivportal.models.CreateInvoiceModel
 import com.example.e_arsivportal.models.CustomerModel
@@ -75,7 +75,7 @@ class Repository @Inject constructor(
         return dao.updateCustomer(product)
     }
 
-    override suspend fun getAllCustomers(): MutableList<CustomerModel> {
+    override fun getAllCustomers(): LiveData<MutableList<CustomerModel>> {
         return dao.getAllCustomers()
     }
 
@@ -103,6 +103,7 @@ class Repository @Inject constructor(
     override fun getPassword() : String? {
         return preferences.getString("password","")
     }
+
 
 
 }
