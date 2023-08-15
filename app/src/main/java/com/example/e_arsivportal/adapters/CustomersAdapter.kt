@@ -59,40 +59,7 @@ class CustomersAdapter @Inject constructor(
             }
         }
 
-
-
-/*
-
-        holder.itemView.setOnClickListener() {
-
-            val intent = Intent(context, AddCustomerActivity::class.java)
-
-            intent.putExtra("customer",customerList[position])
-            context.startActivity(intent)
-
-            println(customerList[position].id)
-
- 
-            bundle.putInt("id",postList[position].id)
-            var fragment = BioStreetQuestionFragment()
-            fragment.arguments = bundle
-            (context as MainActivity).supportFragmentManager.beginTransaction()?.setCustomAnimations(
-                R.anim.from_right, R.anim.to_left)
-                ?.replace(R.id.frame_layout, fragment)
-                ?.commit()
-
-             */
-        }
-
-        /*
-        holder.binding.bioStreetItemPageProfileCardView.setOnClickListener() {
-
-        }
-
-         */
-
-
-
+    }
 
     override fun getItemCount(): Int {
         return customerList.size

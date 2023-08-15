@@ -11,6 +11,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.biochakraastralterapi.adapters.CustomersAdapter
 import com.example.biochakraastralterapi.adapters.IncomingInvoicesAdapter
 import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityIncomingInvoicesBinding
@@ -19,30 +20,20 @@ import com.example.e_arsivportal.viewmodels.IncomingInvoicesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class IncomingInvoicesActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var adapter: IncomingInvoicesAdapter
 
     private lateinit var binding: ActivityIncomingInvoicesBinding
 
     private lateinit var viewModel: IncomingInvoicesViewModel
     private lateinit var context: Context
 
-    lateinit var invoiceList:List<IncomingInvoiceModel>
-
-
-/*
-    val deleteButtonListener = object: CustomersAdapter.CustomViewHolderListener {
-
-
-        override fun onCustomItemClicked(id: Int) {
-            viewModel.deleteCustomer(id,context)
-
-        }
-    }
-
- */
-
+    lateinit var invoiceList: List<IncomingInvoiceModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +44,9 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(IncomingInvoicesViewModel::class.java)
 
+        binding?.incomingInvoicesPageRecyclerView?.adapter = adapter
+
+        binding?.incomingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
 
 
         observeLiveData()
@@ -135,23 +129,13 @@ class IncomingInvoicesActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
             onBackPressedDispatcher.onBackPressed()
         }
-
-
     }
-
 
     fun click(view: View) {
 
         val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-
 
         val formatter = SimpleDateFormat("dd/MM/yyyy")
-
-
-
 
         when (view.getId()) {
             R.id.incomingInvoicesPageTodayButton -> {
@@ -231,9 +215,8 @@ class IncomingInvoicesActivity : AppCompatActivity() {
         } else {
             // at last we are passing that filtered
             // list to our adapter class.
-            binding?.incomingInvoicesPageRecyclerView?.adapter =
-
-                context?.let { IncomingInvoicesAdapter(filteredlist, it) }
+            binding?.incomingInvoicesPageRecyclerView?.adapter = adapter
+            adapter.invoiceList = filteredlist
         }
     }
 
@@ -245,19 +228,10 @@ class IncomingInvoicesActivity : AppCompatActivity() {
 
             invoiceList.let {
 
-                binding?.incomingInvoicesPageRecyclerView?.adapter =
-                    this?.let { IncomingInvoicesAdapter(list, it) }
-                    //this?.let { IncomingInvoices(invoiceList, it, deleteButtonListener) }
-
-                binding?.incomingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
+            adapter.invoiceList = invoiceList
 
             }
         }
         )
-    }
-
-    fun goToAddDataActivity() {
-        val intent = Intent(this, AddCustomerActivity::class.java)
-        startActivity(intent)
     }
 }

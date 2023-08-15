@@ -2,6 +2,7 @@ package com.example.e_arsivportal.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,9 +19,13 @@ import com.example.e_arsivportal.utilities.DataHolder
 import com.example.e_arsivportal.viewmodels.NewInvoiceProductsViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewInvoiceProductsActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var adapter: NewInvoiceProductsAdapter
 
     private lateinit var binding: ActivityNewInvoiceProductsBinding
 
@@ -34,10 +39,6 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
 
     private lateinit var viewModel: NewInvoiceProductsViewModel
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewInvoiceProductsBinding.inflate(layoutInflater)
@@ -50,16 +51,18 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
         observeLiveData()
         onClick()
 
+        binding?.newInvoiceProductsPageRecyclerView?.adapter = adapter
+
+        binding?.newInvoiceProductsPageRecyclerView?.layoutManager =
+            LinearLayoutManager(this)
 
         findViewById<TextView>(R.id.toolBarTittle).text = "Mal ve Hizmetler"
         findViewById<TextView>(R.id.toolBarRightIcon).text = "Ekle"
-
 
         if (DataHolder.productList.value.isNullOrEmpty()) {
             val intent = Intent(this, NewInvoiceAddProductActivity::class.java)
             startActivity(intent)
         }
-
 
         counter+=1
     }
@@ -69,6 +72,8 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
         intent = intent
 
         invoiceModel = intent.getSerializableExtra("invoiceModel") as InvoiceModel
+
+        adapter.productList = DataHolder.productList.value!!
 
     }
 
@@ -84,10 +89,13 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
 
     fun onClick() {
 
+        adapter.setOnItemClickListener {
+            DataHolder.productList.value?.removeAt(it)
+        }
+
         binding.newInvoiceProductsPageSaveButton.setOnClickListener() {
 
             save()
-
         }
 
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
@@ -98,12 +106,9 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
             val intent = Intent(this, NewInvoiceAddProductActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     fun observeLiveData() {
-
-
 
         DataHolder.productList.observe(this, Observer {
 
@@ -113,16 +118,9 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
 
             productList = it
 
-
             it.let {
 
-                binding?.newInvoiceProductsPageRecyclerView?.adapter =
-                    this?.let { NewInvoiceProductsAdapter(productList, it) }
-                //this?.let { IncomingInvoices(invoiceList, it, deleteButtonListener) }
-
-                binding?.newInvoiceProductsPageRecyclerView?.layoutManager =
-                    LinearLayoutManager(this)
-
+                adapter.productList = it
 
                 for (i in it) {
                     rawTotal += i.unitPrice * i.quantity
@@ -131,10 +129,6 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
                 binding.newInvoiceProductsPageProductTotalServiceAmountTextView.text = rawTotal.toString()
                 binding.newInvoiceProductsPageProductTotalVatAmountTextView.text = (rawTotal * 0.18).toString()
                 binding.newInvoiceProductsPageProductTotalGrandTotalAmountTextView.text = (rawTotal + rawTotal * 0.18).toString()
-
-
-
-
 
             }    })
 
@@ -148,13 +142,4 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
             finishAffinity()
 
         })
-
-
-
-
-
-
-
-
-
 }}

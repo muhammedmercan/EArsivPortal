@@ -47,29 +47,12 @@ class ProductsAdapter(private val productList: MutableList<ProductModel>, privat
 
             val intent = Intent(context, AddProductActivity::class.java)
 
-            intent.putExtra("product",productList[position])
+            intent.putExtra("product", productList[position])
             context.startActivity(intent)
 
             println(productList[position].id)
 
-            /*
-            bundle.putInt("id",postList[position].id)
-            var fragment = BioStreetQuestionFragment()
-            fragment.arguments = bundle
-            (context as MainActivity).supportFragmentManager.beginTransaction()?.setCustomAnimations(
-                R.anim.from_right, R.anim.to_left)
-                ?.replace(R.id.frame_layout, fragment)
-                ?.commit()
-
-             */
         }
-
-        /*
-        holder.binding.bioStreetItemPageProfileCardView.setOnClickListener() {
-
-        }
-
-         */
 
     }
 

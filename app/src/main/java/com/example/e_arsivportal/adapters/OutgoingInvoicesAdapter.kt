@@ -68,20 +68,6 @@ class OutgoingInvoicesAdapter(private val invoiceList: List<OutgoingInvoiceModel
             buttonsListener.repeat(invoiceList[position].ettn)
         }
 
-
-        /*
-        holder.binding.customerItemDeleteButton.setOnClickListener() {
-
-            deleteButtonListener.onCustomItemClicked(customerList[position].id)
-
-            customerList.removeAt(position)
-
-            notifyDataSetChanged()
-
-        }
-
-         */
-
     }
 
 

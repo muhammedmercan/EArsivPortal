@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class NewInvoiceAddProductActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewInvoiceAddProductBinding
-
     private var product = NewInvoiceProductModel()
 
 
@@ -32,22 +31,8 @@ class NewInvoiceAddProductActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.toolBarTittle).text = "Yeni Mal Hizmet"
         findViewById<TextView>(R.id.toolBarRightIcon).text = "Kaydet"
 
-
-
-
-
-        /*
-        val intent = Intent(this, NewInvoiceInformationActivity::class.java)
-        intent.putExtra("invoiceModel",invoiceModel)
-        startActivity(intent)
-
-         */
-
         onClick()
-
-
         init()
-
     }
 
     fun save() {
@@ -111,40 +96,28 @@ class NewInvoiceAddProductActivity : AppCompatActivity() {
         }
 
         //product.customTaxName = binding.newInvoiceAddProductPageAddCustomTaxTextInputLayout.editText?.text.toString()
-
-
-
-
         val currentList = DataHolder.productList.value?.toMutableList() ?: mutableListOf()
         currentList.add(product)
         DataHolder.productList.value = currentList
 
+        //DataHolder.productList.value!!.add(product)
         finish()
     }
-
-
-
 
     fun onClick() {
 
         binding.newInvoiceAddProductSaveButton.setOnClickListener() {
-
             save()
-
         }
 
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
             finish()
-
         }
 
         findViewById<TextView>(R.id.toolBarRightIcon).setOnClickListener() {
             save()
-
         }
-
     }
-
 
     private fun calculate(quantity: TextInputLayout, price: TextInputLayout) {
 
@@ -156,11 +129,8 @@ class NewInvoiceAddProductActivity : AppCompatActivity() {
             binding.newInvoiceAddProductPageProductTotalServiceAmountTextView.setText(total.toString())
             binding.newInvoiceAddProductPageProductTotalVatAmountTextView.setText(vat.toString())
             binding.newInvoiceAddProductPageProductTotalGrandTotalAmountTextView.setText((total + vat).toString())
-
         }
     }
-
-
 
     fun init() {
 
@@ -193,10 +163,3 @@ class NewInvoiceAddProductActivity : AppCompatActivity() {
 
     }
 }
-
-
-
-
-
-
-

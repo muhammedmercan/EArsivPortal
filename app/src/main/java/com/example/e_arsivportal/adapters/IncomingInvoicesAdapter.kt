@@ -1,22 +1,37 @@
 package com.example.biochakraastralterapi.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_arsivportal.databinding.IncomingInvoiceItemBinding
 import com.example.e_arsivportal.models.IncomingInvoiceModel
+import javax.inject.Inject
 
-class IncomingInvoicesAdapter(private val invoiceList: List<IncomingInvoiceModel>, private val context: Context) :
-    RecyclerView.Adapter<IncomingInvoicesAdapter.ViewHolder>() {
+class IncomingInvoicesAdapter @Inject constructor(
+) : RecyclerView.Adapter<IncomingInvoicesAdapter.ViewHolder>() {
 
-    interface CustomViewHolderListener{
-        fun onCustomItemClicked(id : Int)
-    }
 
     class ViewHolder(val binding: IncomingInvoiceItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
+
+    private val diffUtil = object : DiffUtil.ItemCallback<IncomingInvoiceModel>() {
+        override fun areItemsTheSame(oldItem: IncomingInvoiceModel, newItem: IncomingInvoiceModel): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: IncomingInvoiceModel, newItem: IncomingInvoiceModel): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
+
+    var invoiceList: List<IncomingInvoiceModel>
+        get() = recyclerListDiffer.currentList
+        set(value) = recyclerListDiffer.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = IncomingInvoiceItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -29,19 +44,6 @@ class IncomingInvoicesAdapter(private val invoiceList: List<IncomingInvoiceModel
         holder.binding.incomingInvoiceItemDocumentNumber.text = invoiceList[position].belgeNumarasi
         holder.binding.incomingInvoiceItemDate.text = invoiceList[position].belgeTarihi
 
-
-        /*
-        holder.binding.customerItemDeleteButton.setOnClickListener() {
-
-            deleteButtonListener.onCustomItemClicked(customerList[position].id)
-
-            customerList.removeAt(position)
-
-            notifyDataSetChanged()
-
-        }
-
-         */
 
     }
 
