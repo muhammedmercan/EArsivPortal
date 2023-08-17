@@ -1,14 +1,13 @@
 package com.example.e_arsivportal.viewmodels
 
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.e_arsivportal.models.CustomerModel
 import com.example.e_arsivportal.repo.RepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class CustomersViewModel @Inject constructor(
     private val repository: RepositoryInterface
@@ -28,16 +27,13 @@ class CustomersViewModel @Inject constructor(
 
         }
     }
-
      */
-
 
     fun deleteCustomer(id: Int) {
 
         viewModelScope.launch {
 
             repository.deleteCustomer(id)
-
 
         }
     }

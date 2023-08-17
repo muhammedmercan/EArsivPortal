@@ -14,8 +14,11 @@ class ProductsViewModel @Inject constructor(
     private val repository: RepositoryInterface
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<MutableList<ProductModel>>()
+    //val liveData = MutableLiveData<MutableList<ProductModel>>()
 
+    val liveData = repository.getAllProducts()
+
+/*
     fun getDataFromRoom() {
 
         viewModelScope.launch {
@@ -25,6 +28,8 @@ class ProductsViewModel @Inject constructor(
         }
     }
 
+
+ */
     fun deleteProduct(id: Int) {
 
         viewModelScope.launch {

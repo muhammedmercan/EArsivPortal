@@ -13,9 +13,7 @@ class NewInvoiceProductsAdapter @Inject constructor(
 ) : RecyclerView.Adapter<NewInvoiceProductsAdapter.ViewHolder>() {
 
 
-
     private var onItemClickListener : ((Int) -> Unit)? = null
-
 
     class ViewHolder(val binding: NewInvoiceProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -42,8 +40,6 @@ class NewInvoiceProductsAdapter @Inject constructor(
         return ViewHolder(binding)
     }
 
-
-
     fun setOnItemClickListener(listener : (Int) -> Unit) {
         onItemClickListener = listener
     }
@@ -60,16 +56,10 @@ class NewInvoiceProductsAdapter @Inject constructor(
 
                 it(position)
             }
-
-
         }
-
     }
 
-
     override fun getItemCount() = productList.size
-
-
 
     }
 

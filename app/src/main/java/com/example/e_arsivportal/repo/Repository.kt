@@ -59,7 +59,7 @@ class Repository @Inject constructor(
         return dao.updateProduct(product)
     }
 
-    override suspend fun getAllProducts(): MutableList<ProductModel> {
+    override fun getAllProducts(): LiveData<MutableList<ProductModel>> {
         return dao.getAllProducts()
     }
 

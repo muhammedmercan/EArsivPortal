@@ -21,6 +21,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.biochakraastralterapi.adapters.OutgoingInvoicesAdapter
+import com.example.biochakraastralterapi.adapters.ProductsAdapter
 import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityOutgoingInvoicesBinding
 import com.example.e_arsivportal.models.OutgoingInvoiceModel
@@ -30,9 +31,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class OutgoingInvoicesActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var adapter: OutgoingInvoicesAdapter
 
     private lateinit var binding: ActivityOutgoingInvoicesBinding
 
@@ -45,16 +50,12 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
     var mission = ""
 
-
-
-
     val CustomViewHolderListener = object: OutgoingInvoicesAdapter.CustomViewHolderListener {
 
 
         override fun review(ettn: String) {
 
             viewModel.getHtml(context,ettn)
-
             mission = "preview"
 
         }
@@ -62,8 +63,6 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         override fun share(ettn: String) {
 
             viewModel.getHtml(context,ettn)
-
-
             mission = "share"
 
         }
@@ -75,17 +74,12 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         }
     }
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOutgoingInvoicesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         registerLauncher()
-
-
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -100,8 +94,6 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         context = this
 
         viewModel = ViewModelProvider(this).get(OutgoingInvoicesViewModel::class.java)
-
-
 
         observeLiveData()
 
@@ -175,7 +167,6 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
         }
 
-
         findViewById<TextView>(R.id.toolBarLeftIcon).text = "Geri"
         findViewById<TextView>(R.id.toolBarRightIcon).text = ""
         findViewById<TextView>(R.id.toolBarTittle).text = "Giden Faturalar"
@@ -183,10 +174,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
             onBackPressedDispatcher.onBackPressed()
         }
-
-
     }
-
 
     fun click(view: View) {
 
@@ -198,9 +186,7 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
         val formatter = SimpleDateFormat("dd/MM/yyyy")
 
-
         when (view.getId()) {
-
 
             R.id.outgoingInvoicesPageTodayButton -> {
 
@@ -253,7 +239,6 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         }
     }
 
-
     private fun filter(text: String) {
         // creating a new array list to filter our data.
         val filteredlist: ArrayList<OutgoingInvoiceModel> = ArrayList<OutgoingInvoiceModel>()
@@ -280,28 +265,20 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         } else {
             // at last we are passing that filtered
             // list to our adapter class.
-            binding?.outgoingInvoicesPageRecyclerView?.adapter =
-
-                context?.let { OutgoingInvoicesAdapter(filteredlist, it,CustomViewHolderListener) }
+            adapter.invoiceList = filteredlist
         }
     }
-
-
 
     private fun preview() {
 
         val intent = Intent(this, WebViewActivity::class.java)
         startActivity(intent)
-
         mission = ""
-
     }
-
 
     private fun share() {
 
         val directoryPath: String = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
-
 
         val intent = Intent(Intent.ACTION_SEND)
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -326,9 +303,11 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
 
                 println(list.toString())
 
-                binding?.outgoingInvoicesPageRecyclerView?.adapter =
-                    this?.let { OutgoingInvoicesAdapter(list, it,CustomViewHolderListener) }
-                //this?.let { OutgoingInvoices(invoiceList, it, deleteButtonListener) }
+                binding?.outgoingInvoicesPageRecyclerView?.adapter = adapter
+
+                invoiceList = it
+
+                adapter.invoiceList = it
 
                 binding?.outgoingInvoicesPageRecyclerView?.layoutManager = LinearLayoutManager(this)
 
@@ -354,21 +333,13 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
                 if (mission.equals("share")) {
                     share()
                 }
-
-
-
-
             }
         }
         )
 
         viewModel.documentLiveData.observe(this, Observer {
-
             println(it.toString())
         })
-
-
-
     }
 
     fun goToAddDataActivity() {
@@ -381,7 +352,6 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
             if (result) {
                 //permission granted
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-
 
                 }
             } else {

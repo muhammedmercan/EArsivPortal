@@ -13,71 +13,57 @@ import com.example.e_arsivportal.R
 import com.example.e_arsivportal.databinding.ActivityProductsBinding
 import com.example.e_arsivportal.viewmodels.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProductsActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var adapter: ProductsAdapter
 
     private lateinit var binding: ActivityProductsBinding
 
     private lateinit var viewModel: ProductsViewModel
     private lateinit var context: Context
 
-
-    val deleteButtonListener = object: ProductsAdapter.CustomViewHolderListener {
-
-        override fun onCustomItemClicked(id: Int) {
-            viewModel.deleteProduct(id)
-
-        }
-
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        viewModel.getDataFromRoom()
-        observeLiveData()
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         context = this
 
         viewModel = ViewModelProvider(this).get(ProductsViewModel::class.java)
 
-
-        viewModel.getDataFromRoom()
+        //viewModel.getDataFromRoom()
 
         observeLiveData()
 
+        adapter.setOnItemClickListener {
+            viewModel.deleteProduct(it)
+        }
 
         findViewById<TextView>(R.id.toolBarLeftIcon).text = "Geri"
         findViewById<TextView>(R.id.toolBarRightIcon).text = "Ürün Ekle"
         findViewById<TextView>(R.id.toolBarTittle).text = "Ürünler"
 
 
+        binding?.productsPageRecyclerview?.adapter = adapter
+        binding?.productsPageRecyclerview?.layoutManager = LinearLayoutManager(this)
+
 
         findViewById<TextView>(R.id.toolBarLeftIcon).setOnClickListener() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-
-
             findViewById<TextView>(R.id.toolBarRightIcon).setOnClickListener() {
             goToAddDataActivity()
         }
-
 
         binding.productsPageAddButton.setOnClickListener() {
 
             goToAddDataActivity()
         }
-
     }
 
     fun observeLiveData() {
@@ -86,14 +72,9 @@ class ProductsActivity : AppCompatActivity() {
 
             productList.let {
 
-                binding?.productsPageRecyclerview?.adapter =
-                    this?.let { ProductsAdapter(productList, it, deleteButtonListener) }
-
-                binding?.productsPageRecyclerview?.layoutManager = LinearLayoutManager(this)
-
+                adapter.productList = it
 
             }
-
         }
         )
     }

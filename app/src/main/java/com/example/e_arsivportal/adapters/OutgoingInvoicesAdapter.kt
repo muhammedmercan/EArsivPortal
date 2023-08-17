@@ -4,14 +4,25 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_arsivportal.databinding.OutgoingInvoiceItemBinding
 import com.example.e_arsivportal.models.IncomingInvoiceModel
 import com.example.e_arsivportal.models.OutgoingInvoiceModel
+import com.example.e_arsivportal.models.ProductModel
+import javax.inject.Inject
 
-class OutgoingInvoicesAdapter(private val invoiceList: List<OutgoingInvoiceModel>, private val context: Context,private val buttonsListener: OutgoingInvoicesAdapter.CustomViewHolderListener
-) :
-    RecyclerView.Adapter<OutgoingInvoicesAdapter.ViewHolder>() {
+class OutgoingInvoicesAdapter @Inject constructor(
+) : RecyclerView.Adapter<OutgoingInvoicesAdapter.ViewHolder>() {
+
+
+    private var onItemClickListener : ((Int) -> Unit)? = null
+
+    fun setOnItemClickListener(listener : (Int) -> Unit) {
+        onItemClickListener = listener
+    }
+
 
     interface CustomViewHolderListener{
         fun review(ettn : String)
@@ -25,6 +36,23 @@ class OutgoingInvoicesAdapter(private val invoiceList: List<OutgoingInvoiceModel
     class ViewHolder(val binding: OutgoingInvoiceItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
+
+    private val diffUtil = object : DiffUtil.ItemCallback<OutgoingInvoiceModel>() {
+        override fun areItemsTheSame(oldItem: OutgoingInvoiceModel, newItem: OutgoingInvoiceModel): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: OutgoingInvoiceModel, newItem: OutgoingInvoiceModel): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
+
+    var invoiceList: List<OutgoingInvoiceModel>
+        get() = recyclerListDiffer.currentList
+        set(value) = recyclerListDiffer.submitList(value)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = OutgoingInvoiceItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -53,19 +81,19 @@ class OutgoingInvoicesAdapter(private val invoiceList: List<OutgoingInvoiceModel
         holder.binding.outgoingInvoiceItemPreviewImageView.setOnClickListener() {
 
             println(invoiceList[position].ettn)
-            buttonsListener.review(invoiceList[position].ettn)
+            //buttonsListener.review(invoiceList[position].ettn)
 
 
         }
 
         holder.binding.outgoingInvoiceItemShareImageView.setOnClickListener() {
 
-            buttonsListener.share(invoiceList[position].ettn)
+            //buttonsListener.share(invoiceList[position].ettn)
         }
 
         holder.binding.outgoingInvoiceItemRepeatImageView.setOnClickListener() {
 
-            buttonsListener.repeat(invoiceList[position].ettn)
+            //buttonsListener.repeat(invoiceList[position].ettn)
         }
 
     }

@@ -20,7 +20,7 @@ interface Api {
     @POST("getRecipientData.php")
     suspend fun getRecipientData(@Body requestModel: CommonStringModel): Response<RecipientDataModel>
 
-    @POST("createInvoice.php")
+    @POST("createInvoiceEmpty.php")
     suspend fun createInvoice(@Body requestModel: CreateInvoiceModel): Response<String>
 
     @POST("login.php")

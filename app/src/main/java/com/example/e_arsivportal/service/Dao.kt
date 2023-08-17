@@ -19,7 +19,7 @@ interface Dao {
     suspend fun updateProduct(product: ProductModel): Int
 
     @Query("SELECT * FROM products")
-    suspend fun getAllProducts() : MutableList<ProductModel>
+    fun getAllProducts() : LiveData<MutableList<ProductModel>>
 
     @Query("DELETE FROM products WHERE id = :id")
     suspend fun deleteProduct(id:Int)

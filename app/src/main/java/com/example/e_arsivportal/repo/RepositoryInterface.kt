@@ -33,7 +33,7 @@ interface RepositoryInterface {
 
     suspend fun updateProduct(product: ProductModel): Int
 
-    suspend fun getAllProducts() : MutableList<ProductModel>
+    fun getAllProducts() : LiveData<MutableList<ProductModel>>
 
     suspend fun deleteProduct(id:Int)
 

@@ -1,28 +1,48 @@
 package com.example.biochakraastralterapi.adapters
 
-import android.content.Context
-import android.content.Intent
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_arsivportal.databinding.ProductItemBinding
 import com.example.e_arsivportal.models.ProductModel
-import com.example.e_arsivportal.views.AddProductActivity
+import javax.inject.Inject
 
-class ProductsAdapter(private val productList: MutableList<ProductModel>, private val context: Context, private val deleteButtonListener: ProductsAdapter.CustomViewHolderListener) :
-    RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+class ProductsAdapter @Inject constructor(
+) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
-    interface CustomViewHolderListener{
-        fun onCustomItemClicked(id : Int)
-    }
+    private var onItemClickListener : ((Int) -> Unit)? = null
 
     class ViewHolder(val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
+    private val diffUtil = object : DiffUtil.ItemCallback<ProductModel>() {
+        override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
+
+    private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
+
+    var productList: MutableList<ProductModel>
+        get() = recyclerListDiffer.currentList
+        set(value) = recyclerListDiffer.submitList(value)
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ProductItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
+    }
+
+    fun setOnItemClickListener(listener : (Int) -> Unit) {
+        onItemClickListener = listener
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,17 +52,14 @@ class ProductsAdapter(private val productList: MutableList<ProductModel>, privat
 
         holder.binding.productItemPrice.text = productList[position].price.toString() + " TL"
 
-
         holder.binding.productItemDeleteButton.setOnClickListener() {
 
-            deleteButtonListener.onCustomItemClicked(productList[position].id)
-
-            productList.removeAt(position)
-
-            notifyDataSetChanged()
-
+            onItemClickListener?.let {
+                it(productList[position].id)
+            }
         }
 
+/*
         holder.itemView.setOnClickListener() {
 
             val intent = Intent(context, AddProductActivity::class.java)
@@ -54,6 +71,8 @@ class ProductsAdapter(private val productList: MutableList<ProductModel>, privat
 
         }
 
+
+ */
     }
 
 

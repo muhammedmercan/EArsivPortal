@@ -53,8 +53,7 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
 
         binding?.newInvoiceProductsPageRecyclerView?.adapter = adapter
 
-        binding?.newInvoiceProductsPageRecyclerView?.layoutManager =
-            LinearLayoutManager(this)
+        binding?.newInvoiceProductsPageRecyclerView?.layoutManager = LinearLayoutManager(this)
 
         findViewById<TextView>(R.id.toolBarTittle).text = "Mal ve Hizmetler"
         findViewById<TextView>(R.id.toolBarRightIcon).text = "Ekle"
@@ -73,8 +72,6 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
 
         invoiceModel = intent.getSerializableExtra("invoiceModel") as InvoiceModel
 
-        adapter.productList = DataHolder.productList.value!!
-
     }
 
     fun save() {
@@ -90,7 +87,10 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
     fun onClick() {
 
         adapter.setOnItemClickListener {
-            DataHolder.productList.value?.removeAt(it)
+            val data = DataHolder.productList.value?.toMutableList()
+            data?.removeAt(it)
+            DataHolder.productList.value = data
+
         }
 
         binding.newInvoiceProductsPageSaveButton.setOnClickListener() {
@@ -115,8 +115,6 @@ class NewInvoiceProductsActivity : AppCompatActivity() {
             var rawTotal = 0.0
             var vat = 0.0
             var grandTotal = 0.0
-
-            productList = it
 
             it.let {
 
