@@ -1,9 +1,8 @@
 # EArsivPortal
 
-![Çıkış Yap](https://github.com/muhammedmercan/EArsivPortal/assets/58571212/2a94b93e-1586-4ccf-88fb-0d2e5e72653f)
-
-![Screenshot_1686496228](https://github.com/muhammedmercan/EArsivPortal/assets/58571212/6e0d253d-b402-4344-9f54-142e9b1d82e4)
-![Yeni Mal Hizmet](https://github.com/muhammedmercan/EArsivPortal/assets/58571212/3955f49d-23fc-43b4-b8b5-44de6742da98)
-![Screenshot_1685566706](https://github.com/muhammedmercan/EArsivPortal/assets/58571212/ebcbc598-b73c-457d-8e0e-884915c14730)
-![Screenshot_1685566381](https://github.com/muhammedmercan/EArsivPortal/assets/58571212/b6d455c5-f2b5-4896-887f-4d2f52876fb0)
+<img src="https://github.com/muhammedmercan/deneme/assets/58571212/f228d959-e05b-4c35-a79c-09899edfab2b" width="200" height="400" />
+<img src="https://github.com/muhammedmercan/deneme/assets/58571212/5d37f292-4a5e-4b8d-8c9d-2d231e9693a6" width="200" height="400" />
+<img src="https://github.com/muhammedmercan/deneme/assets/58571212/cda7bb40-ec46-4cc9-a23e-6aa4074d9015" width="200" height="400" />
+<img src="https://github.com/muhammedmercan/deneme/assets/58571212/ea9ed9c6-2133-4a43-a5bc-df12d9686455" width="200" height="400" />
+<img src="https://github.com/muhammedmercan/deneme/assets/58571212/fcda65a2-f6c6-4284-87cb-550fe1761f5c" width="200" height="400" />
 
