@@ -342,11 +342,6 @@ class OutgoingInvoicesActivity : AppCompatActivity() {
         })
     }
 
-    fun goToAddDataActivity() {
-        val intent = Intent(this, AddCustomerActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun registerLauncher() {
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
             if (result) {

@@ -5,22 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.biochakraastralterapi.utilities.CustomSharedPreferences
 import com.example.biochakraastralterapi.utilities.Token
 import com.example.e_arsivportal.MainActivity
-import com.example.e_arsivportal.R
-import com.example.e_arsivportal.databinding.ActivityIncomingInvoicesBinding
 import com.example.e_arsivportal.databinding.ActivityLoginBinding
-import com.example.e_arsivportal.databinding.ActivityNewInvoiceAddProductBinding
-import com.example.e_arsivportal.models.LoginModel
 import com.example.e_arsivportal.repo.Repository
-import com.example.e_arsivportal.service.Database
-import com.example.e_arsivportal.viewmodels.IncomingInvoicesViewModel
 import com.example.e_arsivportal.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint

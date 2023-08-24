@@ -1,4 +1,4 @@
-package com.example.e_arsivportal.service
+package com.example.e_arsivportal.roomdb
 
 import androidx.lifecycle.LiveData
 import androidx.room.Insert

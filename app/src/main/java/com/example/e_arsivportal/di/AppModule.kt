@@ -6,8 +6,8 @@ import androidx.room.Room
 import com.example.e_arsivportal.repo.Repository
 import com.example.e_arsivportal.repo.RepositoryInterface
 import com.example.e_arsivportal.service.Api
-import com.example.e_arsivportal.service.Dao
-import com.example.e_arsivportal.service.Database
+import com.example.e_arsivportal.roomdb.Dao
+import com.example.e_arsivportal.roomdb.Database
 import com.example.e_arsivportal.utilities.DataHolder.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -28,7 +28,7 @@ object AppModule {
     @Provides
     fun injectRoomDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(context,Database::class.java,"ArtBookDB").build()
+    ) = Room.databaseBuilder(context, Database::class.java,"ArtBookDB").build()
 
     @Singleton
     @Provides

@@ -1,7 +1,5 @@
-package com.example.e_arsivportal.service
+package com.example.e_arsivportal.roomdb
 
-import android.content.Context
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.e_arsivportal.models.CustomerModel
 import com.example.e_arsivportal.models.ProductModel

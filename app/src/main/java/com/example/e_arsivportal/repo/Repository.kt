@@ -14,15 +14,15 @@ import com.example.e_arsivportal.models.OutgoingInvoiceModel
 import com.example.e_arsivportal.models.ProductModel
 import com.example.e_arsivportal.models.RecipientDataModel
 import com.example.e_arsivportal.service.Api
-import com.example.e_arsivportal.service.Dao
+import com.example.e_arsivportal.roomdb.Dao
 import retrofit2.Response
 import javax.inject.Inject
 
 class Repository @Inject constructor(
 
-        private val dao: Dao,
-        private val retrofitApi: Api,
-        private val preferences: SharedPreferences) : RepositoryInterface {
+    private val dao: Dao,
+    private val retrofitApi: Api,
+    private val preferences: SharedPreferences) : RepositoryInterface {
     override suspend fun getAllIssuedToMe(requestModel: GetInvoicesModel): Response<List<IncomingInvoiceModel>> {
         return retrofitApi.getAllIssuedToMe(requestModel)
     }
