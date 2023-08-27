@@ -7,6 +7,8 @@ import com.example.e_arsivportal.getOrAwaitValue
 import com.example.e_arsivportal.models.CustomerModel
 import com.example.e_arsivportal.models.ProductModel
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
@@ -17,10 +19,14 @@ import org.junit.Test
 
 
 @ExperimentalCoroutinesApi
+@HiltAndroidTest
 class DaoTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
 
     lateinit var database: Database
@@ -31,10 +37,8 @@ class DaoTest {
     @Before
     fun setup() {
 
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),Database::class.java)
-            .allowMainThreadQueries() //this is a test case, we don't want other thread pools
-            .build()
+        hiltRule.inject()
+        dao = database.dao()
 
     }
 
