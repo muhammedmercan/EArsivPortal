@@ -3,12 +3,12 @@ package com.example.e_arsivportal.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.example.e_arsivportal.repo.Repository
-import com.example.e_arsivportal.repo.RepositoryInterface
-import com.example.e_arsivportal.service.Api
-import com.example.e_arsivportal.roomdb.Dao
-import com.example.e_arsivportal.roomdb.Database
-import com.example.e_arsivportal.utilities.DataHolder.BASE_URL
+import com.example.e_arsivportal.data.repository.Repository
+import com.example.e_arsivportal.domain.repository.RepositoryInterface
+import com.example.e_arsivportal.data.remote.Api
+import com.example.e_arsivportal.data.local.roomdb.Dao
+import com.example.e_arsivportal.data.local.roomdb.Database
+import com.example.e_arsivportal.util.DataHolder.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +28,7 @@ object AppModule {
     @Provides
     fun injectRoomDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(context, Database::class.java,"ArtBookDB").build()
+    ) = Room.databaseBuilder(context, Database::class.java, "ArtBookDB").build()
 
     @Singleton
     @Provides
@@ -47,12 +47,12 @@ object AppModule {
             .build()
             .create(Api::class.java)
 
-
     }
 
     @Singleton
     @Provides
-    fun injectNormalRepo(dao : Dao, api: Api, preferences: SharedPreferences) = Repository(dao,api,preferences) as RepositoryInterface
+    fun injectNormalRepo(dao: Dao, api: Api, preferences: SharedPreferences) =
+        Repository(dao, api, preferences) as RepositoryInterface
 
 
     @Provides

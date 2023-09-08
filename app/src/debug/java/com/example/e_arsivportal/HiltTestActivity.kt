@@ -5,4 +5,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HiltTestActivity : AppCompatActivity() {
+
+
 }

@@ -3,7 +3,7 @@ package com.example.e_arsivportal
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.e_arsivportal.views.HomeActivity
+import com.example.e_arsivportal.presentation.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

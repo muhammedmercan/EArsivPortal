@@ -22,43 +22,43 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".views.WebViewActivity"
+            android:name=".presentation.webview.WebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".views.OutgoingInvoicesActivity"
+            android:name=".presentation.outgoinginvoices.OutgoingInvoicesActivity"
             android:exported="false" />
         <activity
-            android:name=".views.IncomingInvoicesActivity"
+            android:name=".presentation.incominginvoices.IncomingInvoicesActivity"
             android:exported="false" />
         <activity
-            android:name=".views.AddCustomerActivity"
+            android:name=".presentation.customers.AddCustomerActivity"
             android:exported="false" />
         <activity
-            android:name=".views.CustomersActivity"
+            android:name=".presentation.customers.CustomersActivity"
             android:exported="false" />
         <activity
-            android:name=".views.AddProductActivity"
+            android:name=".presentation.products.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".views.ProductsActivity"
+            android:name=".presentation.products.ProductsActivity"
             android:exported="false" />
         <activity
-            android:name=".views.NewInvoiceProductsActivity"
+            android:name=".presentation.newinvoice.NewInvoiceProductsActivity"
             android:exported="false" />
         <activity
-            android:name=".views.NewInvoiceAddProductActivity"
+            android:name=".presentation.newinvoice.NewInvoiceAddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".views.NewInvoiceInformationActivity"
+            android:name=".presentation.newinvoice.NewInvoiceInformationActivity"
             android:exported="false" />
         <activity
-            android:name=".views.NewInvoiceCustomerChoiceActivity"
+            android:name=".presentation.newinvoice.NewInvoiceCustomerChoiceActivity"
             android:exported="false" />
         <activity
-            android:name=".views.HomeActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".views.LoginActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

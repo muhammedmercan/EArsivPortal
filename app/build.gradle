@@ -101,4 +101,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") {
         exclude group : "org.checkerframework", module : "checker"
     }
+
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 }

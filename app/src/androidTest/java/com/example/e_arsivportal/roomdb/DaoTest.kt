@@ -1,11 +1,11 @@
 package com.example.e_arsivportal.roomdb
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
+import com.example.e_arsivportal.data.local.roomdb.Dao
+import com.example.e_arsivportal.data.local.roomdb.Database
 import com.example.e_arsivportal.getOrAwaitValue
-import com.example.e_arsivportal.models.CustomerModel
-import com.example.e_arsivportal.models.ProductModel
+import com.example.e_arsivportal.domain.model.CustomerModel
+import com.example.e_arsivportal.domain.model.ProductModel
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -16,7 +16,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-
+import javax.inject.Inject
+import javax.inject.Named
 
 @ExperimentalCoroutinesApi
 @HiltAndroidTest
@@ -28,25 +29,23 @@ class DaoTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
-
+    @Inject
+    @Named("testDatabase")
     lateinit var database: Database
 
     private lateinit var dao : Dao
-
 
     @Before
     fun setup() {
 
         hiltRule.inject()
         dao = database.dao()
-
     }
 
     @After
     fun teardown() {
         database.close()
     }
-
 
     @Test
     fun addProduct() = runBlocking {
@@ -56,7 +55,6 @@ class DaoTest {
 
         val list = dao.getAllProducts().getOrAwaitValue()
         assertThat(list).contains(exampleProduct)
-
     }
 
     @Test
@@ -70,12 +68,10 @@ class DaoTest {
         val data = dao.getAllProducts().getOrAwaitValue().get(0)
 
         assertThat(data.name).isEqualTo("Telefon")
-
     }
 
     @Test
     fun getAllProducts() = runBlocking {
-
 
         dao.addProduct(ProductModel("Tablet","1",12312.5f,20))
         dao.addProduct(ProductModel("Telefon","4",2341.5f,20))
@@ -84,7 +80,6 @@ class DaoTest {
         val data = dao.getAllProducts().getOrAwaitValue()
 
         assertThat(data.size).isEqualTo(3)
-
     }
 
     @Test
@@ -97,7 +92,6 @@ class DaoTest {
         val data = dao.getAllProducts().getOrAwaitValue()
 
         assertThat(data).contains(exampleProduct)
-
     }
 
     @Test
@@ -108,7 +102,6 @@ class DaoTest {
 
         val list = dao.getAllCustomers().getOrAwaitValue()
         assertThat(list).contains(exampleCustomer)
-
     }
 
     @Test
@@ -123,7 +116,6 @@ class DaoTest {
         val data = dao.getAllProducts().getOrAwaitValue().get(0)
 
         assertThat(data.name).isEqualTo("Cansu")
-
     }
 
     @Test
@@ -133,11 +125,9 @@ class DaoTest {
         dao.addCustomer(CustomerModel("22222222222","eh","Muhammed","Mercan","Halkalı","adres"))
         dao.addCustomer(CustomerModel("33333333333","eh","Muhammed","Mercan","Halkalı","adres"))
 
-
         val data = dao.getAllCustomers().getOrAwaitValue()
 
         assertThat(data.size).isEqualTo(3)
-
     }
 
     @Test
@@ -150,9 +140,7 @@ class DaoTest {
         val data = dao.getAllCustomers().getOrAwaitValue()
 
         assertThat(data).contains(exampleCustomer)
-
     }
 
-    //productModel
 
 }
